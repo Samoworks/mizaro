@@ -3,16 +3,16 @@ import { pricingPlans, buildWhatsAppLink } from "@/lib/site-config";
 
 export default function Packages() {
   return (
-    <section id="packages" className="bg-white py-20 sm:py-24">
+    <section id="accounting" className="bg-white py-20 sm:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-sm font-bold tracking-wide text-brand-600">
-            الباقات
+            باقات المحاسبة والضريبة
           </span>
-          <h2 className="mt-3 text-3xl font-extrabold text-brand-900 sm:text-4xl">
+          <h2 className="mt-3 text-3xl font-extrabold text-ink-950 sm:text-4xl">
             اختر الباقة المناسبة لعملك
           </h2>
-          <p className="mt-4 text-neutral-600 leading-8">
+          <p className="mt-4 text-ink-500 leading-8">
             بدون التزامات طويلة أو رسوم خفية — تقدر تبدأ وتلغي شهريًا.
           </p>
         </div>
@@ -23,10 +23,10 @@ export default function Packages() {
             return (
               <div
                 key={plan.id}
-                className={`flex flex-col rounded-2xl border p-7 ${
+                className={`flex flex-col rounded-[1.75rem] border p-7 ${
                   plan.highlighted
-                    ? "border-brand-700 bg-brand-900 text-white shadow-xl shadow-brand-900/15"
-                    : "border-neutral-200 bg-white"
+                    ? "border-ink-950 bg-ink-950 text-white shadow-xl shadow-ink-950/15"
+                    : "border-ink-100 bg-white"
                 }`}
               >
                 {plan.highlighted && (
@@ -36,7 +36,7 @@ export default function Packages() {
                 )}
                 <h3
                   className={`text-lg font-extrabold ${
-                    plan.highlighted ? "text-white" : "text-brand-900"
+                    plan.highlighted ? "text-white" : "text-ink-950"
                   }`}
                 >
                   {plan.name}
@@ -46,7 +46,7 @@ export default function Packages() {
                   {isCustom ? (
                     <span
                       className={`text-2xl font-extrabold ${
-                        plan.highlighted ? "text-white" : "text-brand-900"
+                        plan.highlighted ? "text-white" : "text-ink-950"
                       }`}
                     >
                       {plan.price}
@@ -55,17 +55,13 @@ export default function Packages() {
                     <>
                       <span
                         className={`text-4xl font-extrabold ${
-                          plan.highlighted ? "text-white" : "text-brand-900"
+                          plan.highlighted ? "text-white" : "text-ink-950"
                         }`}
                       >
                         {plan.price}
                       </span>
                       <span
-                        className={
-                          plan.highlighted
-                            ? "text-brand-100/80"
-                            : "text-neutral-500"
-                        }
+                        className={plan.highlighted ? "text-ink-300" : "text-ink-400"}
                       >
                         ريال
                       </span>
@@ -74,7 +70,7 @@ export default function Packages() {
                 </div>
                 <p
                   className={`mt-1 text-sm ${
-                    plan.highlighted ? "text-brand-100/80" : "text-neutral-500"
+                    plan.highlighted ? "text-ink-300" : "text-ink-400"
                   }`}
                 >
                   {isCustom ? plan.period : `/ ${plan.period.replace("ريال / ", "")}`}
@@ -85,14 +81,10 @@ export default function Packages() {
                     <li key={feature} className="flex items-start gap-2.5 text-sm">
                       <Check
                         className={`mt-0.5 h-4.5 w-4.5 shrink-0 ${
-                          plan.highlighted ? "text-brand-200" : "text-brand-600"
+                          plan.highlighted ? "text-brand-300" : "text-brand-600"
                         }`}
                       />
-                      <span
-                        className={
-                          plan.highlighted ? "text-brand-50" : "text-neutral-700"
-                        }
-                      >
+                      <span className={plan.highlighted ? "text-ink-100" : "text-ink-700"}>
                         {feature}
                       </span>
                     </li>
@@ -103,16 +95,16 @@ export default function Packages() {
                   href={
                     isCustom
                       ? buildWhatsAppLink(
-                          "مرحبًا، عندي مطعم/متجر بفروع متعددة وأبي أعرف تفاصيل الباقة المخصصة."
+                          "مرحبًا، عندي منشأة بفروع متعددة وأبي أعرف تفاصيل الباقة المخصصة."
                         )
-                      : "#contact"
+                      : "/contact?service=accounting"
                   }
                   target={isCustom ? "_blank" : undefined}
                   rel={isCustom ? "noopener noreferrer" : undefined}
-                  className={`mt-7 inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-bold transition-colors ${
+                  className={`mt-7 inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-bold transition-colors ${
                     plan.highlighted
-                      ? "bg-white text-brand-900 hover:bg-brand-50"
-                      : "bg-brand-800 text-white hover:bg-brand-700"
+                      ? "bg-white text-ink-950 hover:bg-brand-50"
+                      : "bg-ink-950 text-white hover:bg-brand-800"
                   }`}
                 >
                   {plan.ctaLabel}
