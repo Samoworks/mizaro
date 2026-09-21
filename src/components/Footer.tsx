@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Mail, MessageCircle } from "lucide-react";
-import { siteConfig, buildWhatsAppLink } from "@/lib/site-config";
+import { siteConfig } from "@/lib/site-config";
+import { getSiteSettings, buildWhatsAppLinkAsync } from "@/lib/sanity-data";
 import MizaroMark from "@/components/MizaroMark";
 
 const links = [
@@ -12,8 +13,10 @@ const links = [
   { href: "/contact", label: "تواصل معنا" },
 ];
 
-export default function Footer() {
+export default async function Footer() {
   const year = new Date().getFullYear();
+  const settings = await getSiteSettings();
+  const whatsappLink = await buildWhatsAppLinkAsync();
 
   return (
     <footer className="bg-ink-950 py-16 text-ink-200">
@@ -55,22 +58,22 @@ export default function Footer() {
             <ul className="flex flex-col gap-2.5 text-sm text-ink-400">
               <li>
                 <a
-                  href={buildWhatsAppLink()}
+                  href={whatsappLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 hover:text-white"
                 >
                   <MessageCircle className="h-4 w-4" />
-                  {siteConfig.whatsappDisplay}
+                  {settings.whatsappDisplay}
                 </a>
               </li>
               <li>
                 <a
-                  href={`mailto:${siteConfig.email}`}
+                  href={`mailto:${settings.email}`}
                   className="flex items-center gap-2 hover:text-white"
                 >
                   <Mail className="h-4 w-4" />
-                  {siteConfig.email}
+                  {settings.email}
                 </a>
               </li>
             </ul>
