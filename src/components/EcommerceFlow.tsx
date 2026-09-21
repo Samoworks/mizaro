@@ -6,69 +6,60 @@ import {
   ClipboardList,
   CreditCard,
   Truck,
-  Users,
-  BarChart3,
-  ChevronLeft,
+  UserCheck,
+  Database,
   type LucideIcon,
 } from "lucide-react";
+import { ecommerceFlowStages } from "@/lib/site-config";
 
-type Stage = {
-  icon: LucideIcon;
-  label: string;
-};
-
-const stages: Stage[] = [
-  { icon: Package, label: "المنتج" },
-  { icon: Store, label: "المتجر" },
-  { icon: Search, label: "SEO" },
-  { icon: Megaphone, label: "الإعلان" },
-  { icon: ClipboardList, label: "الطلب" },
-  { icon: CreditCard, label: "الدفع" },
-  { icon: Truck, label: "الشحن" },
-  { icon: Users, label: "العميل" },
-  { icon: BarChart3, label: "التحليل" },
+const icons: LucideIcon[] = [
+  Package,
+  Store,
+  Search,
+  Megaphone,
+  ClipboardList,
+  CreditCard,
+  Truck,
+  UserCheck,
+  Database,
 ];
 
 export default function EcommerceFlow() {
   return (
-    <section className="bg-brand-50/60 py-16 sm:py-20">
+    <section className="bg-ink-950 py-20 sm:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-bold tracking-wide text-amber-600">
-            نظرتنا للمتجر
+          <span className="text-sm font-bold tracking-wide text-brand-300">
+            رحلة المتجر
           </span>
-          <h2 className="mt-3 text-3xl font-extrabold text-brand-900 sm:text-4xl">
-            من المتجر إلى العميل
+          <h2 className="mt-3 text-3xl font-extrabold text-white sm:text-4xl">
+            من المنتج إلى البيانات
           </h2>
+          <p className="mt-4 text-ink-400 leading-8">
+            نراقب كل مرحلة في رحلة متجرك، ونتأكد أن كل خطوة تخدم التي بعدها.
+          </p>
         </div>
 
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-x-2 gap-y-4">
-          {stages.map((stage, index) => (
-            <div key={stage.label} className="flex items-center gap-2">
-              <div className="flex flex-col items-center gap-2 rounded-2xl border border-amber-100 bg-white px-4 py-4 text-center shadow-sm">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-50 text-amber-600">
-                  <stage.icon className="h-5 w-5" strokeWidth={1.8} />
-                </span>
-                <span className="text-xs font-bold text-brand-900 sm:text-sm">
-                  {stage.label}
-                </span>
+        <div className="mt-14 flex flex-wrap items-center justify-center gap-3 sm:gap-2">
+          {ecommerceFlowStages.map((stage, index) => {
+            const Icon = icons[index];
+            const isLast = index === ecommerceFlowStages.length - 1;
+            return (
+              <div key={stage} className="flex items-center gap-2 sm:gap-3">
+                <div className="flex flex-col items-center gap-2.5 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 sm:px-5">
+                  <Icon className="h-5 w-5 text-brand-300" strokeWidth={1.7} />
+                  <span className="text-xs font-bold text-white sm:text-sm">
+                    {stage}
+                  </span>
+                </div>
+                {!isLast && (
+                  <span className="hidden text-ink-600 sm:inline">—</span>
+                )}
               </div>
-              {index < stages.length - 1 && (
-                <ChevronLeft
-                  className="h-5 w-5 shrink-0 text-amber-300"
-                  strokeWidth={2}
-                />
-              )}
-            </div>
-          ))}
+            );
+          })}
         </div>
-
-        <p className="mx-auto mt-10 max-w-2xl text-center text-base font-bold text-brand-900">
-          لا ننظر إلى المتجر كصفحة إلكترونية فقط، بل كمنظومة متكاملة تبدأ من
-          المنتج وتنتهي بالعميل والبيانات.
-        </p>
       </div>
     </section>
   );
 }
-
