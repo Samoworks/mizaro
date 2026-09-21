@@ -5,8 +5,8 @@ import {
   FileSpreadsheet,
   ScanLine,
   BarChart3,
-  ShoppingCart,
-  Headset,
+  FileBarChart,
+  CalendarCheck2,
   type LucideIcon,
 } from "lucide-react";
 
@@ -19,60 +19,60 @@ type Service = {
 const services: Service[] = [
   {
     icon: BookOpenCheck,
-    title: "مسك الحسابات",
+    title: "مسك الدفاتر",
     description: "تسجيل وتنظيم كل حركاتك المالية أولًا بأول بدقة واحترافية.",
   },
   {
     icon: FileStack,
-    title: "تنظيم ومراجعة الفواتير",
+    title: "تنظيم الفواتير",
     description: "ترتيب فواتير المبيعات والمشتريات ومراجعتها للتأكد من صحتها.",
   },
   {
     icon: ReceiptText,
-    title: "متابعة ضريبة القيمة المضافة",
+    title: "ضريبة القيمة المضافة",
     description: "احتساب ومتابعة ضريبة القيمة المضافة أولًا بأول دون تأخير.",
   },
   {
     icon: FileSpreadsheet,
-    title: "تجهيز الإقرارات الضريبية",
+    title: "الإقرارات الضريبية",
     description: "إعداد إقراراتك الضريبية وتجهيزها للتقديم في مواعيدها.",
   },
   {
     icon: ScanLine,
-    title: "متابعة الفوترة الإلكترونية",
+    title: "الفوترة الإلكترونية",
     description: "التأكد من مطابقة فواتيرك لمتطلبات الفوترة الإلكترونية.",
   },
   {
     icon: BarChart3,
-    title: "تقارير شهرية للمبيعات والمصروفات",
-    description: "تقرير شهري واضح يوضح لك أداء منشأتك ماليًا.",
+    title: "مراجعة المبيعات والمصروفات",
+    description: "مراجعة دورية لحركة المبيعات والمصروفات لضبط أرقام نشاطك.",
   },
   {
-    icon: ShoppingCart,
-    title: "محاسبة المتاجر الإلكترونية",
-    description: "متابعة الطلبات والمبيعات والعمولات الخاصة بمتجرك الإلكتروني.",
+    icon: FileBarChart,
+    title: "التقارير المالية",
+    description: "تقارير مالية واضحة توضح لك أداء منشأتك بشكل دوري.",
   },
   {
-    icon: Headset,
-    title: "دعم ومتابعة شهرية",
-    description: "أنا معك بشكل مستمر للإجابة عن استفساراتك المحاسبية والضريبية.",
+    icon: CalendarCheck2,
+    title: "المتابعة الشهرية",
+    description: "متابعة مستمرة لحساباتك وضرائبك كل شهر دون انقطاع.",
   },
 ];
 
 export default function Services() {
   return (
-    <section id="services" className="bg-white py-20 sm:py-24">
+    <section className="bg-white py-20 sm:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-sm font-bold tracking-wide text-brand-600">
-            خدماتي
+            خدماتنا
           </span>
-          <h2 className="mt-3 text-3xl font-extrabold text-brand-900 sm:text-4xl">
-            كل ما يحتاجه نشاطك محاسبيًا
+          <h2 className="mt-3 text-3xl font-extrabold text-ink-950 sm:text-4xl">
+            محاسبتك تحت السيطرة
           </h2>
-          <p className="mt-4 text-neutral-600 leading-8">
-            خدمات محاسبية وضريبية مصممة لتناسب طبيعة المنشآت الصغيرة
-            والمتوسطة، من المطاعم والبوفيات إلى المتاجر الإلكترونية.
+          <p className="mt-4 text-ink-500 leading-8">
+            نرتب أرقام نشاطك ونساعدك على متابعة التزاماتك المالية والضريبية
+            بوضوح، دون الحاجة إلى بناء قسم محاسبي كامل من البداية.
           </p>
         </div>
 
@@ -80,15 +80,15 @@ export default function Services() {
           {services.map((service) => (
             <div
               key={service.title}
-              className="flex flex-col gap-4 rounded-2xl border border-neutral-200 bg-white p-6 text-right shadow-sm transition-shadow hover:shadow-md"
+              className="flex flex-col gap-4 rounded-2xl border border-ink-100 bg-white p-6 text-right shadow-sm transition-shadow hover:shadow-md"
             >
               <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
-                <service.icon className="h-6 w-6" strokeWidth={1.8} />
+                <service.icon className="h-6 w-6" strokeWidth={1.7} />
               </span>
-              <h3 className="text-base font-bold text-brand-900">
+              <h3 className="text-base font-bold text-ink-950">
                 {service.title}
               </h3>
-              <p className="text-sm leading-7 text-neutral-600">
+              <p className="text-sm leading-7 text-ink-500">
                 {service.description}
               </p>
             </div>
