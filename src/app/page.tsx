@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import WhyUs from "@/components/WhyUs";
+import ExperienceSection from "@/components/ExperienceSection";
 import Packages from "@/components/Packages";
 import HowWeWork from "@/components/HowWeWork";
 import RestaurantFit from "@/components/RestaurantFit";
@@ -17,6 +18,7 @@ export default function Home() {
         <Hero />
         <Services />
         <WhyUs />
+        <ExperienceSection />
         <Packages />
         <HowWeWork />
         <RestaurantFit />
