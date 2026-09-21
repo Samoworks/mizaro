@@ -2,9 +2,9 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #0f1e1c;
+  --foreground: #101513;
 
-  /* لون أساسي: أخضر داكن فخم */
+  /* لون أساسي: أخضر زمردي داكن فخم */
   --brand-50: #eef7f3;
   --brand-100: #d6ece1;
   --brand-200: #aed9c4;
@@ -16,6 +16,19 @@
   --brand-800: #123f31;
   --brand-900: #0c2e24;
   --brand-950: #071e18;
+
+  /* رمادي/فحمي محايد — للعناصر الثانوية وقسم التجارة الإلكترونية */
+  --ink-50: #f6f7f7;
+  --ink-100: #e9eaea;
+  --ink-200: #d3d5d5;
+  --ink-300: #aeb2b1;
+  --ink-400: #82817d;
+  --ink-500: #5f625e;
+  --ink-600: #46504d;
+  --ink-700: #313633;
+  --ink-800: #1e2422;
+  --ink-900: #12100e;
+  --ink-950: #0a0908;
 }
 
 @theme inline {
@@ -32,6 +45,17 @@
   --color-brand-800: var(--brand-800);
   --color-brand-900: var(--brand-900);
   --color-brand-950: var(--brand-950);
+  --color-ink-50: var(--ink-50);
+  --color-ink-100: var(--ink-100);
+  --color-ink-200: var(--ink-200);
+  --color-ink-300: var(--ink-300);
+  --color-ink-400: var(--ink-400);
+  --color-ink-500: var(--ink-500);
+  --color-ink-600: var(--ink-600);
+  --color-ink-700: var(--ink-700);
+  --color-ink-800: var(--ink-800);
+  --color-ink-900: var(--ink-900);
+  --color-ink-950: var(--ink-950);
   --font-sans: "Tajawal", ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -42,4 +66,10 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
