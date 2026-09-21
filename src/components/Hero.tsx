@@ -27,6 +27,11 @@ export default function Hero() {
           إلى محاسب دوام كامل.
         </p>
 
+        <p className="max-w-2xl text-sm text-brand-200/80 sm:text-base">
+          محاسبة شهرية عن بُعد للبوفيات والمطاعم والمتاجر الإلكترونية
+          والمنشآت الصغيرة والمتوسطة.
+        </p>
+
         <div className="mt-2 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
           <a
             href="#contact"
