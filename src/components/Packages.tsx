@@ -1,7 +1,14 @@
 import { Check, ShieldAlert } from "lucide-react";
-import { pricingPlans, buildWhatsAppLink } from "@/lib/site-config";
+import { getPricingPlans, buildWhatsAppLinkAsync } from "@/lib/sanity-data";
 
-export default function Packages() {
+export default async function Packages() {
+  const [pricingPlans, whatsappCustomLink] = await Promise.all([
+    getPricingPlans(),
+    buildWhatsAppLinkAsync(
+      "مرحبًا، عندي منشأة بفروع متعددة وأبي أعرف تفاصيل الباقة المخصصة."
+    ),
+  ]);
+
   return (
     <section id="accounting" className="bg-white py-20 sm:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -93,11 +100,7 @@ export default function Packages() {
 
                 <a
                   href={
-                    isCustom
-                      ? buildWhatsAppLink(
-                          "مرحبًا، عندي منشأة بفروع متعددة وأبي أعرف تفاصيل الباقة المخصصة."
-                        )
-                      : "/contact?service=accounting"
+                    isCustom ? whatsappCustomLink : "/contact?service=accounting"
                   }
                   target={isCustom ? "_blank" : undefined}
                   rel={isCustom ? "noopener noreferrer" : undefined}
