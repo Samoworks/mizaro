@@ -5,11 +5,12 @@ import { Menu, X, Calculator } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 
 const navLinks = [
-  { href: "#services", label: "الخدمات" },
-  { href: "#why-us", label: "ليش نحن؟" },
+  { href: "#hero", label: "الرئيسية" },
+  { href: "#accounting", label: "المحاسبة والضريبة" },
+  { href: "#ecommerce", label: "التجارة الإلكترونية" },
   { href: "#packages", label: "الباقات" },
-  { href: "#how-we-work", label: "كيف نشتغل" },
-  { href: "#faq", label: "الأسئلة الشائعة" },
+  { href: "#about", label: "من نحن" },
+  { href: "#contact", label: "تواصل معنا" },
 ];
 
 export default function Header() {
