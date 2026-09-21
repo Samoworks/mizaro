@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { ArrowLeft, MessageCircle } from "lucide-react";
-import { buildWhatsAppLink } from "@/lib/site-config";
+import { buildWhatsAppLinkAsync } from "@/lib/sanity-data";
 
-export default function Hero() {
+export default async function Hero() {
+  const whatsappLink = await buildWhatsAppLinkAsync();
+
   return (
     <section className="relative overflow-hidden bg-ink-950">
       {/* شبكة نقاط خفيفة + توهّج زمردي — عنصر بصري مجرّد بدل الصور التقليدية */}
@@ -52,7 +54,7 @@ export default function Hero() {
           </div>
 
           <a
-            href={buildWhatsAppLink()}
+            href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-ink-400 transition-colors hover:text-white"
