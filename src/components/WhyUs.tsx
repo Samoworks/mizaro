@@ -14,12 +14,12 @@ type Reason = {
 };
 
 const reasons: Reason[] = [
-  { icon: BadgeDollarSign, title: "سعر شهري واضح بدون مفاجآت" },
-  { icon: RefreshCw, title: "متابعة مستمرة لحساباتك" },
-  { icon: Laptop, title: "خدمة كاملة عن بُعد" },
-  { icon: FileBarChart, title: "تقارير سهلة ومفهومة" },
-  { icon: PiggyBank, title: "توفير تكلفة محاسب بدوام كامل" },
-  { icon: Store, title: "مصممة خصيصًا للمنشآت الصغيرة" },
+  { icon: BadgeDollarSign, title: "سعر شهري ثابت ومعروف مسبقًا بدون رسوم مفاجئة" },
+  { icon: RefreshCw, title: "متابعة حساباتك أولًا بأول كل شهر" },
+  { icon: Laptop, title: "خدمة كاملة عن بُعد بدون الحاجة لزيارة مكتب" },
+  { icon: FileBarChart, title: "تقرير شهري واضح لمبيعاتك ومصروفاتك" },
+  { icon: PiggyBank, title: "بديل عملي لتوظيف محاسب بدوام كامل" },
+  { icon: Store, title: "فهم عملي لطبيعة عمل المطاعم والمتاجر الصغيرة" },
 ];
 
 export default function WhyUs() {
@@ -31,7 +31,7 @@ export default function WhyUs() {
             ليش تختارني؟
           </span>
           <h2 className="mt-3 text-3xl font-extrabold text-brand-900 sm:text-4xl">
-            شريكك المحاسبي الموثوق
+            محاسبة تفهم نشاطك
           </h2>
         </div>
 
