@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { ArrowLeft, MessageCircle } from "lucide-react";
-import { buildWhatsAppLink } from "@/lib/site-config";
+import { buildWhatsAppLinkAsync } from "@/lib/sanity-data";
 
-export default function FinalCta() {
+export default async function FinalCta() {
+  const whatsappLink = await buildWhatsAppLinkAsync();
+
   return (
     <section className="relative overflow-hidden bg-ink-950 py-20 sm:py-28">
       <div
@@ -26,7 +28,7 @@ export default function FinalCta() {
             <ArrowLeft className="h-4 w-4" />
           </Link>
           <a
-            href={buildWhatsAppLink()}
+            href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-3.5 text-base font-bold text-white transition-colors hover:bg-white/10 sm:w-auto"
