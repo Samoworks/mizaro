@@ -1,10 +1,12 @@
 import { MessageCircle } from "lucide-react";
-import { buildWhatsAppLink } from "@/lib/site-config";
+import { buildWhatsAppLinkAsync } from "@/lib/sanity-data";
 
-export default function WhatsAppFloatButton() {
+export default async function WhatsAppFloatButton() {
+  const whatsappLink = await buildWhatsAppLinkAsync();
+
   return (
     <a
-      href={buildWhatsAppLink()}
+      href={whatsappLink}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="تواصل معنا عبر واتساب"
