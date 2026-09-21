@@ -1,7 +1,15 @@
 import { Check, ShieldAlert, Sparkles } from "lucide-react";
-import { ecommercePackages, ecommercePackagesNote } from "@/lib/site-config";
+import {
+  getEcommercePackages,
+  getEcommercePackagesNote,
+} from "@/lib/sanity-data";
 
-export default function EcommercePackages() {
+export default async function EcommercePackages() {
+  const [ecommercePackages, ecommercePackagesNote] = await Promise.all([
+    getEcommercePackages(),
+    getEcommercePackagesNote(),
+  ]);
+
   return (
     <section id="ecommerce" className="bg-brand-50/40 py-16 sm:py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
