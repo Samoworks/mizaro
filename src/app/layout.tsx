@@ -11,23 +11,27 @@ import "./globals.css";
 import { siteConfig } from "@/lib/site-config";
 import WhatsAppFloatButton from "@/components/WhatsAppFloatButton";
 
+const description =
+  "مِزارو تقدم حلول المحاسبة والضريبة والتجارة الإلكترونية للمنشآت وأصحاب الأعمال، من التنظيم المالي إلى تحسين المتاجر والأداء الرقمي.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
   title: {
     default: `${siteConfig.companyName} | ${siteConfig.tagline}`,
     template: `%s | ${siteConfig.companyName}`,
   },
-  description:
-    "خدمتان مستقلتان: محاسبة وضريبة شهرية عن بُعد للبوفيهات والمطاعم والكافيهات والمنشآت الصغيرة والمتوسطة، وخدمات تطوير وتحسين المتاجر الإلكترونية في السعودية.",
+  description,
   keywords: [
-    "محاسبة مطاعم",
-    "محاسب بوفيهات",
+    "مِزارو",
+    "Mizaro",
+    "محاسبة وضريبة عن بعد",
     "ضريبة القيمة المضافة",
     "إقرار ضريبي",
     "محاسب عن بعد السعودية",
     "تطوير متاجر إلكترونية",
     "تحسين محركات بحث للمتاجر",
     "إدارة حملات إعلانية للمتاجر",
+    "حلول الأعمال الرقمية",
   ],
   authors: [{ name: siteConfig.companyName }],
   alternates: {
@@ -39,14 +43,12 @@ export const metadata: Metadata = {
     url: siteConfig.siteUrl,
     siteName: siteConfig.companyName,
     title: `${siteConfig.companyName} | ${siteConfig.tagline}`,
-    description:
-      "محاسبة وضريبة للمنشآت الصغيرة والمتوسطة، وخدمات مستقلة لتطوير وتحسين المتاجر الإلكترونية.",
+    description,
   },
   twitter: {
     card: "summary_large_image",
     title: `${siteConfig.companyName} | ${siteConfig.tagline}`,
-    description:
-      "محاسبة وضريبة للمنشآت الصغيرة والمتوسطة، وخدمات مستقلة لتطوير وتحسين المتاجر الإلكترونية.",
+    description,
   },
   robots: {
     index: true,
@@ -54,12 +56,17 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   name: siteConfig.companyName,
-  description:
-    "خدمة محاسبة وضريبة شهرية عن بُعد للبوفيهات والمطاعم والكافيهات والمنشآت الصغيرة والمتوسطة، وخدمات مستقلة لتطوير وتحسين المتاجر الإلكترونية في السعودية.",
+  alternateName: siteConfig.companyNameEn,
+  description,
   areaServed: {
     "@type": "Country",
     name: "SA",
