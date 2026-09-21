@@ -6,11 +6,11 @@ import {
   BadgePercent,
   Share2,
   Music2,
+  Rss,
   ListTree,
   Target,
   MousePointerClick,
   CreditCard,
-  Truck,
   Code2,
   Wrench,
   type LucideIcon,
@@ -25,32 +25,28 @@ type Service = {
 const services: Service[] = [
   {
     icon: Store,
-    title: "إنشاء وتجهيز المتجر",
-    description: "تجهيز بنية المتجر وتنظيم الأقسام والصفحات وتجربة المستخدم.",
+    title: "تأسيس وتجهيز المتجر",
+    description: "تجهيز بنية المتجر وتنظيم الأقسام والصفحات من الأساس.",
   },
   {
     icon: Package,
     title: "إدارة المنتجات",
-    description:
-      "تنظيم المنتجات والتصنيفات والأسعار والمواصفات وتحسين طريقة عرض المنتجات.",
+    description: "تنظيم المنتجات والتصنيفات والأسعار وطريقة عرضها.",
   },
   {
     icon: FileText,
     title: "تحسين صفحات المنتجات",
-    description:
-      "تحسين اسم المنتج والوصف والمعلومات والصور والعناصر التي تساعد العميل على اتخاذ قرار الشراء.",
+    description: "تحسين الاسم والوصف والصور والعناصر التي تساعد على الشراء.",
   },
   {
     icon: Search,
     title: "SEO",
-    description:
-      "تحسين ظهور المتجر والمنتجات في محركات البحث: Page Title وMeta Description وSEO URL وGoogle Search Console وSitemap وCanonical وتحسين محتوى المنتجات.",
+    description: "تحسين ظهور المتجر والمنتجات في محركات البحث.",
   },
   {
     icon: BadgePercent,
     title: "Google Ads",
-    description:
-      "تجهيز الحملات الإعلانية وربطها بصفحات المنتجات أو صفحات العروض وتحسين بنية الإعلان.",
+    description: "تجهيز الحملات الإعلانية وربطها بصفحات المنتجات والعروض.",
   },
   {
     icon: Share2,
@@ -60,49 +56,42 @@ const services: Service[] = [
   {
     icon: Music2,
     title: "TikTok Ads",
-    description:
-      "تجهيز الحملات الإعلانية والمحتوى المناسب للمنصة وربطها بالمتجر.",
+    description: "تجهيز الحملات والمحتوى المناسب للمنصة وربطها بالمتجر.",
+  },
+  {
+    icon: Rss,
+    title: "Product Feed",
+    description: "تجهيز وربط بيانات المنتجات بالمنصات الإعلانية بشكل صحيح.",
   },
   {
     icon: ListTree,
-    title: "الكتالوجات وProduct Feed",
-    description:
-      "ربط المنتجات بالكتالوجات والمنصات الإعلانية ومعالجة مشاكل عدم ظهور المنتجات.",
+    title: "Catalog",
+    description: "بناء ومعالجة مشاكل الكتالوجات وربطها بالمنتجات.",
   },
   {
     icon: Target,
-    title: "Pixel والتتبع",
+    title: "Pixel & Tracking",
     description: "إعداد ومراجعة أدوات التتبع والتحويلات وربطها بالحملات.",
   },
   {
     icon: MousePointerClick,
     title: "تحسين تجربة المستخدم",
-    description:
-      "تحسين رحلة العميل داخل المتجر: من الدخول → البحث → المنتج → السلة → الدفع.",
+    description: "تحسين رحلة العميل داخل المتجر من الدخول إلى الدفع.",
   },
   {
     icon: CreditCard,
-    title: "الدفع والتقسيط",
-    description:
-      "تهيئة وعرض خيارات الدفع والتقسيط مثل تمارا وتابي بطريقة واضحة داخل المتجر.",
-  },
-  {
-    icon: Truck,
-    title: "الشحن والاستلام",
-    description:
-      "تحسين طريقة عرض خيارات الشحن والاستلام والمعلومات المتعلقة بها.",
+    title: "تحسين الدفع والشحن",
+    description: "تهيئة وعرض خيارات الدفع والشحن بطريقة واضحة داخل المتجر.",
   },
   {
     icon: Code2,
-    title: "تخصيص المتجر",
-    description:
-      "تعديل واجهة المتجر باستخدام HTML وCSS وJavaScript عند الحاجة.",
+    title: "التعديلات HTML / CSS / JS",
+    description: "تعديل واجهة المتجر مباشرة عند الحاجة لتخصيص دقيق.",
   },
   {
     icon: Wrench,
     title: "تحليل المشاكل التقنية",
-    description:
-      "تحليل مشاكل المتجر والعناصر الديناميكية والواجهة وربط الخدمات المختلفة.",
+    description: "تحليل مشاكل المتجر والعناصر الديناميكية وربط الخدمات.",
   },
 ];
 
@@ -111,27 +100,32 @@ export default function EcommerceServices() {
     <section className="bg-white py-16 sm:py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-bold tracking-wide text-amber-600">
+          <span className="text-sm font-bold tracking-wide text-ink-500">
             خدماتنا
           </span>
-          <h2 className="mt-3 text-3xl font-extrabold text-brand-900 sm:text-4xl">
-            خدمات التجارة الإلكترونية
+          <h2 className="mt-3 text-3xl font-extrabold text-ink-950 sm:text-4xl">
+            متجرك يحتاج أكثر من مجرد منتجات
           </h2>
+          <p className="mt-4 text-ink-500 leading-8">
+            المتجر الناجح ليس تصميمًا فقط. نعمل على المنتجات، تجربة المستخدم،
+            الظهور في البحث، التتبع، الكتالوجات، الإعلانات، والتحسينات
+            التقنية.
+          </p>
         </div>
 
         <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
             <div
               key={service.title}
-              className="flex flex-col gap-4 rounded-2xl border border-neutral-200 bg-white p-6 text-right shadow-sm transition-shadow hover:shadow-md"
+              className="flex flex-col gap-4 rounded-2xl border border-ink-100 bg-white p-6 text-right shadow-sm transition-shadow hover:shadow-md"
             >
-              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-amber-600">
-                <service.icon className="h-6 w-6" strokeWidth={1.8} />
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-ink-100 text-ink-700">
+                <service.icon className="h-6 w-6" strokeWidth={1.7} />
               </span>
-              <h3 className="text-base font-bold text-brand-900">
+              <h3 className="text-base font-bold text-ink-950">
                 {service.title}
               </h3>
-              <p className="text-sm leading-7 text-neutral-600">
+              <p className="text-sm leading-7 text-ink-500">
                 {service.description}
               </p>
             </div>
@@ -141,4 +135,3 @@ export default function EcommerceServices() {
     </section>
   );
 }
-
