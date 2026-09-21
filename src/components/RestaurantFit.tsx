@@ -5,6 +5,8 @@ import {
   ReceiptText,
   Percent,
   Scale,
+  UtensilsCrossed,
+  ShoppingCart,
   type LucideIcon,
 } from "lucide-react";
 
@@ -22,13 +24,41 @@ const items: Item[] = [
   { icon: Scale, label: "صافي النشاط" },
 ];
 
+const audiences = [
+  {
+    icon: UtensilsCrossed,
+    label: "المطاعم والبوفيات",
+    message: "أنت ركز على تشغيل مطعمك، ونحن نتابع حساباتك.",
+  },
+  {
+    icon: ShoppingCart,
+    label: "المتاجر الإلكترونية",
+    message: "وأنت ركز على مبيعات متجرك، ونحن نتابع حساباته.",
+  },
+];
+
 export default function RestaurantFit() {
   return (
     <section className="bg-brand-900 py-20 sm:py-24">
       <div className="mx-auto max-w-6xl px-4 text-center sm:px-6">
-        <h2 className="mx-auto max-w-2xl text-3xl font-extrabold leading-tight text-white sm:text-4xl">
-          أنت ركز على تشغيل مطعمك، ونحن نتابع حساباتك.
-        </h2>
+        <div className="mx-auto grid max-w-4xl grid-cols-1 gap-5 sm:grid-cols-2">
+          {audiences.map((audience) => (
+            <div
+              key={audience.label}
+              className="flex flex-col items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-7 text-center"
+            >
+              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white">
+                <audience.icon className="h-6 w-6" strokeWidth={1.8} />
+              </span>
+              <span className="text-xs font-bold tracking-wide text-brand-200">
+                {audience.label}
+              </span>
+              <h2 className="text-xl font-extrabold leading-tight text-white sm:text-2xl">
+                {audience.message}
+              </h2>
+            </div>
+          ))}
+        </div>
 
         <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
           {items.map((item) => (
