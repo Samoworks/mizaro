@@ -18,8 +18,9 @@ export default function Footer() {
               </span>
             </div>
             <p className="mt-4 max-w-xs text-sm leading-7 text-brand-200/80">
-              محاسبة وضريبة شهرية عن بُعد للبوفيهات والمطاعم والكافيهات
-              والمتاجر الإلكترونية والمنشآت الصغيرة والمتوسطة في السعودية.
+              محاسبة وضريبة شهرية عن بُعد، وخدمات مستقلة لتطوير وتحسين
+              المتاجر الإلكترونية، لأصحاب المنشآت الصغيرة والمتوسطة في
+              السعودية.
             </p>
           </div>
 
@@ -27,8 +28,13 @@ export default function Footer() {
             <h3 className="mb-4 text-sm font-bold text-white">روابط</h3>
             <ul className="flex flex-col gap-2.5 text-sm text-brand-200/80">
               <li>
-                <a href="#services" className="hover:text-white">
-                  الخدمات
+                <a href="#accounting" className="hover:text-white">
+                  المحاسبة والضريبة
+                </a>
+              </li>
+              <li>
+                <a href="#ecommerce" className="hover:text-white">
+                  التجارة الإلكترونية
                 </a>
               </li>
               <li>
