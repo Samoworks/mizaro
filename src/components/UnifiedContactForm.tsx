@@ -91,7 +91,11 @@ function buildSummaryMessage(form: FormState) {
   return lines.filter(Boolean).join("\n");
 }
 
-export default function UnifiedContactForm() {
+export default function UnifiedContactForm({
+  whatsappNumber,
+}: {
+  whatsappNumber?: string;
+}) {
   const searchParams = useSearchParams();
   const [form, setForm] = useState<FormState>(() => {
     const preset = searchParams.get("service");
@@ -113,9 +117,9 @@ export default function UnifiedContactForm() {
     // ويفتح واتساب مع ملخص الطلب. لربطه بخادم فعلي أو بريد إلكتروني
     // أو جدول بيانات، أضف الاستدعاء هنا قبل setSubmitted(true).
     const message = buildSummaryMessage(form);
-    const whatsappUrl = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(
-      message
-    )}`;
+    const whatsappUrl = `https://wa.me/${
+      whatsappNumber || siteConfig.whatsappNumber
+    }?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank", "noopener,noreferrer");
 
     setSubmitted(true);
