@@ -174,8 +174,8 @@ export default function PrivacyPage() {
         <p>
           لأي استفسار يتعلق بسياسة الخصوصية أو طريقة التعامل مع البيانات،
           يمكن التواصل مع {siteConfig.companyName} على{" "}
-          
-            href={`mailto:${siteConfig.email}`}
+          <a
+            href={"mailto:" + siteConfig.email}
             className="text-brand-700 underline"
           >
             {siteConfig.email}
