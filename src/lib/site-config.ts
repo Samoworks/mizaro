@@ -32,8 +32,8 @@ export const siteConfig = {
   whatsappDisplay: "+966 56 920 0561",
 
   /** البريد الإلكتروني للتواصل */
-  email: "info@mizaro.example.com",
-
+  email: "mizaro@outlook.sa",
+  
   /** رسالة واتساب الافتراضية عند الضغط على زر التواصل العام */
   whatsappDefaultMessage: "مرحبًا، أبي أستفسر عن خدمات مِزارو.",
 } as const;
