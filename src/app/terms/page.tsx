@@ -227,8 +227,8 @@ export default function TermsPage() {
         <p>
           للاستفسارات المتعلقة بهذه الشروط والأحكام أو خدمات{" "}
           {siteConfig.companyName}، يمكن التواصل معنا على{" "}
-          
-            href={`mailto:${siteConfig.email}`}
+          <a
+            href={"mailto:" + siteConfig.email}
             className="text-brand-700 underline"
           >
             {siteConfig.email}
