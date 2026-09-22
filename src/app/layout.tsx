@@ -9,6 +9,8 @@ import "@fontsource/tajawal/800.css";
 import "@fontsource/tajawal/900.css";
 import "./globals.css";
 import { siteConfig } from "@/lib/site-config";
+import { getSiteSettings } from "@/lib/sanity-data";
+import { BRAND_SHADES } from "@/lib/color-scale";
 import WhatsAppFloatButton from "@/components/WhatsAppFloatButton";
 
 const description =
@@ -76,10 +78,23 @@ const jsonLd = {
   email: siteConfig.email,
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const settings = await getSiteSettings();
+
+  // إذا اختار المستخدم لونًا مخصصًا من لوحة Sanity، نحقن متغيرات CSS
+  // تكتب فوق تدرج ألوان "brand" الافتراضي في كل صفحات الموقع دفعة واحدة
+  const brandOverrideCss = settings.brandScale
+    ? `:root{${BRAND_SHADES.map(
+        (shade) => `--brand-${shade}:${settings.brandScale![shade]};`
+      ).join("")}}`
+    : null;
+
   return (
     <html lang="ar" dir="rtl">
       <body className="min-h-screen bg-white font-sans text-foreground antialiased">
+        {brandOverrideCss && (
+          <style dangerouslySetInnerHTML={{ __html: brandOverrideCss }} />
+        )}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

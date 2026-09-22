@@ -7,6 +7,9 @@
  * الثابتة الافتراضية من site-config.ts تلقائيًا — الموقع لا يتعطل أبدًا.
  */
 import { sanityClient } from "@/sanity/client";
+import { urlForImage } from "@/sanity/image-url";
+import { generateBrandScale } from "@/lib/color-scale";
+import type { SanityImageSource } from "@sanity/image-url";
 import {
   siteConfig as defaultSiteConfig,
   pricingPlans as defaultPricingPlans,
@@ -38,6 +41,12 @@ type SiteSettingsDoc = {
   email?: string;
   whatsappDefaultMessage?: string;
   ecommercePackagesNote?: string;
+  logo?: SanityImageSource;
+  heroImage?: SanityImageSource;
+  heroBadge?: string;
+  heroTitle?: string;
+  heroSubtitle?: string;
+  primaryColor?: { hex?: string };
 };
 
 async function safeFetch<T>(query: string, fallback: T): Promise<T> {
@@ -56,9 +65,25 @@ async function safeFetch<T>(query: string, fallback: T): Promise<T> {
 /** إعدادات الموقع العامة (الاسم، واتساب، الإيميل...) مدمجة مع الافتراضي */
 export async function getSiteSettings() {
   const doc = await safeFetch<SiteSettingsDoc | null>(
-    `*[_type == "siteSettings"][0]`,
+    `*[_type == "siteSettings"][0]{
+      ...,
+      logo,
+      heroImage,
+      primaryColor
+    }`,
     null
   );
+
+  const logoUrl = doc?.logo ? urlForImage(doc.logo)?.width(80).height(80).fit("max").url() ?? null : null;
+  const heroImageUrl = doc?.heroImage
+    ? urlForImage(doc.heroImage)?.width(900).height(900).fit("max").url() ?? null
+    : null;
+
+  // نولّد تدرج الألوان فقط إذا اختار المستخدم لونًا مخصصًا من لوحة التحكم،
+  // حتى لا نغيّر مظهر الموقع الافتراضي بدون داعٍ
+  const brandScale = doc?.primaryColor?.hex
+    ? generateBrandScale(doc.primaryColor.hex)
+    : null;
 
   return {
     companyName: doc?.companyName || defaultSiteConfig.companyName,
@@ -70,6 +95,12 @@ export async function getSiteSettings() {
     email: doc?.email || defaultSiteConfig.email,
     whatsappDefaultMessage:
       doc?.whatsappDefaultMessage || defaultSiteConfig.whatsappDefaultMessage,
+    logoUrl,
+    heroImageUrl,
+    heroBadge: doc?.heroBadge || defaultSiteConfig.heroBadge,
+    heroTitle: doc?.heroTitle || defaultSiteConfig.heroTitle,
+    heroSubtitle: doc?.heroSubtitle || defaultSiteConfig.heroSubtitle,
+    brandScale,
   };
 }
 

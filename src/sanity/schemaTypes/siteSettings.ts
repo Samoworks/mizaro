@@ -6,6 +6,7 @@ export default defineType({
   type: "document",
   groups: [
     { name: "general", title: "عام", default: true },
+    { name: "brand", title: "الهوية والبنرات" },
     { name: "contact", title: "التواصل" },
     { name: "packages", title: "الباقات" },
   ],
@@ -36,6 +37,56 @@ export default defineType({
       type: "url",
       group: "general",
     }),
+
+    // ===== الهوية والبنرات =====
+    defineField({
+      name: "logo",
+      title: "شعار الموقع",
+      description:
+        "صورة الشعار الظاهرة أعلى الموقع بجانب اسم الشركة. اتركه فارغًا لاستخدام الشعار الافتراضي.",
+      type: "image",
+      group: "brand",
+      options: { hotspot: true },
+    }),
+    defineField({
+      name: "primaryColor",
+      title: "اللون الأساسي للموقع",
+      description:
+        "اختر لونًا واحدًا ويتولّد منه تلقائيًا كامل تدرج ألوان الموقع (الأزرار، الروابط، الخلفيات). اتركه فارغًا للون الافتراضي.",
+      type: "color",
+      group: "brand",
+      options: { disableAlpha: true },
+    }),
+    defineField({
+      name: "heroBadge",
+      title: "النص الصغير أعلى العنوان الرئيسي",
+      description: 'مثال: "حلول الأعمال والتجارة الرقمية"',
+      type: "string",
+      group: "brand",
+    }),
+    defineField({
+      name: "heroTitle",
+      title: "العنوان الرئيسي في الصفحة الأولى",
+      type: "string",
+      group: "brand",
+    }),
+    defineField({
+      name: "heroSubtitle",
+      title: "الوصف تحت العنوان الرئيسي",
+      type: "text",
+      rows: 3,
+      group: "brand",
+    }),
+    defineField({
+      name: "heroImage",
+      title: "صورة/بنر الصفحة الرئيسية",
+      description:
+        "صورة تظهر في الجانب البصري من قسم الهيرو (اختياري). اتركها فارغة لعرض التصميم الرسومي الافتراضي.",
+      type: "image",
+      group: "brand",
+      options: { hotspot: true },
+    }),
+
     defineField({
       name: "whatsappNumber",
       title: "رقم واتساب (بصيغة دولية بدون + أو مسافات)",
@@ -77,6 +128,6 @@ export default defineType({
     }),
   ],
   preview: {
-    select: { title: "companyName", subtitle: "tagline" },
+    select: { title: "companyName", subtitle: "tagline", media: "logo" },
   },
 });
