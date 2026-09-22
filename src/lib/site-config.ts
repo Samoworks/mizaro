@@ -20,16 +20,16 @@ export const siteConfig = {
   tagline: "حلول الأعمال والتجارة الرقمية",
 
   /** رابط الموقع بعد النشر (غيّره بعد ربط النطاق) */
-  siteUrl: "https://mohasbak.example.com",
+  siteUrl: "https://mizaro.vercel.app",
 
   /**
    * رقم واتساب بصيغة دولية بدون + أو مسافات أو أصفار زائدة
    * مثال: رقم سعودي يبدأ بـ 9665 ثم باقي الرقم (9 أرقام)
    */
-  whatsappNumber: "966500000000",
+  whatsappNumber: "966569200561",
 
   /** نفس الرقم لكن للعرض على الشاشة */
-  whatsappDisplay: "+966 50 000 0000",
+  whatsappDisplay: "+966 56 920 0561",
 
   /** البريد الإلكتروني للتواصل */
   email: "info@mizaro.example.com",
@@ -135,7 +135,7 @@ export const ecommercePackages = [
   {
     id: "audit",
     name: "فحص المتجر",
-    price: "199",
+    price: "49",
     period: "ريال — مرة واحدة",
     highlighted: false,
     tagline: null,
@@ -154,7 +154,7 @@ export const ecommercePackages = [
   {
     id: "starter",
     name: "انطلاقة",
-    price: "499",
+    price: "399",
     period: "ريال — مرة واحدة",
     highlighted: false,
     tagline: null,
@@ -173,7 +173,7 @@ export const ecommercePackages = [
   {
     id: "growth",
     name: "نمو",
-    price: "899",
+    price: "799",
     period: "ريال / شهريًا",
     highlighted: true,
     tagline: "الخيار الأكثر شمولًا للمتاجر النامية",
@@ -194,7 +194,7 @@ export const ecommercePackages = [
   {
     id: "pro",
     name: "احتراف",
-    price: "1,499",
+    price: "1,299",
     period: "ريال / شهريًا",
     highlighted: false,
     tagline: null,
