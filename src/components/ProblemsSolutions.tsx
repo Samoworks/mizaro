@@ -1,5 +1,5 @@
 import { CheckCircle2 } from "lucide-react";
-import { accountingProblems } from "@/lib/site-config";
+import { accountingProblems, problemsClosingLine } from "@/lib/site-config";
 
 export default function ProblemsSolutions() {
   return (
@@ -7,10 +7,10 @@ export default function ProblemsSolutions() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-sm font-bold tracking-wide text-brand-600">
-            مشاكل وحلول
+            مشغول بإدارة مشروعك؟
           </span>
           <h2 className="mt-3 text-3xl font-extrabold text-ink-950 sm:text-4xl">
-            تواجه أيًا من هذا؟ عندي حل واضح لكل نقطة
+            مشغول بإدارة مشروعك… لكن من يدير أرقامه؟
           </h2>
         </div>
 
@@ -33,6 +33,10 @@ export default function ProblemsSolutions() {
             </div>
           ))}
         </div>
+
+        <p className="mt-10 text-center text-xl font-extrabold text-ink-950">
+          {problemsClosingLine}
+        </p>
       </div>
     </section>
   );

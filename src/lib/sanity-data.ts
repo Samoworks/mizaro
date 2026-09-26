@@ -133,6 +133,7 @@ export async function getPricingPlans(): Promise<PricingPlan[]> {
       features: plan.features,
       ctaLabel: plan.ctaLabel,
       highlighted: plan.highlighted,
+      tagline: "tagline" in plan ? plan.tagline : null,
     }));
   }
 

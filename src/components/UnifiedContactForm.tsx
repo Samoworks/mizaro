@@ -2,10 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { CheckCircle2, AlertCircle } from "lucide-react";
-
-/** رابط Google Apps Script Web App لتسجيل كل طلب كصف جديد في جدول بيانات Google Sheets */
-const GOOGLE_SHEET_ENDPOINT =
-  "https://script.google.com/macros/s/AKfycbw-ihXMVfE4_VFkLQUidaSFeWUr8auDHn-f60SDPZko2IKCo45ltr1dUPc3yXiqLaTx1g/exec";
+import { googleSheetEndpoint } from "@/lib/site-config";
 
 type FormState = {
   name: string;
@@ -47,11 +44,11 @@ export default function UnifiedContactForm() {
       // نسجّل الطلب كصف جديد في جدول بيانات Google Sheets. الرد يكون
       // opaque (بسبب no-cors) فما نقدر نقرأ محتواه، بس لو الطلب وصل
       // للشبكة بدون خطأ اتصال، نعتبره أُرسل بنجاح.
-      await fetch(GOOGLE_SHEET_ENDPOINT, {
+      await fetch(googleSheetEndpoint, {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, requestType: "نموذج التواصل" }),
         keepalive: true,
       });
       setStatus("sent");

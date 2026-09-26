@@ -7,10 +7,10 @@ export default function WhyUs() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-sm font-bold tracking-wide text-brand-600">
-            لماذا مِزارو؟
+            الثقة
           </span>
           <h2 className="mt-3 text-3xl font-extrabold text-ink-950 sm:text-4xl">
-            خبرة تتعامل معها مباشرة، بدون وسطاء
+            أرقامك المالية تستحق وضوحًا أكبر
           </h2>
         </div>
 

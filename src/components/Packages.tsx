@@ -26,7 +26,7 @@ export default async function Packages() {
 
         <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-3">
           {pricingPlans.map((plan) => {
-            const isCustom = plan.id === "custom";
+            const isCustom = plan.price === "تواصل معي";
             return (
               <div
                 key={plan.id}
@@ -48,6 +48,15 @@ export default async function Packages() {
                 >
                   {plan.name}
                 </h3>
+                {plan.tagline && (
+                  <p
+                    className={`mt-1 text-xs font-bold ${
+                      plan.highlighted ? "text-ink-300" : "text-ink-400"
+                    }`}
+                  >
+                    {plan.tagline}
+                  </p>
+                )}
 
                 <div className="mt-4 flex items-baseline gap-2">
                   {isCustom ? (
@@ -115,7 +124,17 @@ export default async function Packages() {
           })}
         </div>
 
-        <div className="mx-auto mt-10 flex max-w-3xl items-start gap-3 rounded-xl border border-amber-200 bg-amber-50 p-4 text-right">
+        <div className="mt-10 text-center">
+          <p className="text-sm text-ink-500">
+            لست متأكدًا؟{" "}
+            <a href="/#quiz" className="font-bold text-brand-700 underline underline-offset-4">
+              دعنا نحدد الباقة المناسبة لنشاطك
+            </a>
+            .
+          </p>
+        </div>
+
+        <div className="mx-auto mt-8 flex max-w-3xl items-start gap-3 rounded-xl border border-amber-200 bg-amber-50 p-4 text-right">
           <ShieldAlert className="mt-0.5 h-5 w-5 shrink-0 text-amber-600" />
           <p className="text-sm leading-7 text-amber-800">
             الخدمات الضريبية المقدمة تخضع للأنظمة والمتطلبات المعمول بها لدى

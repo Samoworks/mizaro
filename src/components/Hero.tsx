@@ -49,10 +49,10 @@ export default async function Hero() {
               <ArrowLeft className="h-4 w-4" />
             </Link>
             <Link
-              href="#domains"
+              href="/#quiz"
               className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-3.5 text-base font-bold text-white transition-colors hover:bg-white/10 sm:w-auto"
             >
-              اكتشف خدماتنا
+              اعرف الباقة المناسبة لك
             </Link>
           </div>
 

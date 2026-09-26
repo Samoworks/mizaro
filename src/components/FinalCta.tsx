@@ -13,7 +13,7 @@ export default async function FinalCta() {
       />
       <div className="relative mx-auto max-w-3xl px-4 text-center sm:px-6">
         <h2 className="text-3xl font-extrabold leading-tight text-white sm:text-5xl">
-          جاهز ترتب أعمالك؟
+          خلّ حساباتك علينا، وركّز على مشروعك
         </h2>
         <p className="mt-5 text-base leading-8 text-ink-300 sm:text-lg">
           ابدأ معي بخطوة واضحة، ووفّر تكلفة محاسب دائم.
@@ -24,7 +24,7 @@ export default async function FinalCta() {
             href="/contact"
             className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-bold text-ink-950 transition-colors hover:bg-brand-50 sm:w-auto"
           >
-            ابدأ الآن
+            ابدأ مع مِزارو
             <ArrowLeft className="h-4 w-4" />
           </Link>
           <a
