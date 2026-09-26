@@ -24,9 +24,11 @@ export default async function Packages() {
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {pricingPlans.map((plan) => {
             const isCustom = plan.price === "تواصل معي";
+            const isFree = plan.price === "مجانًا";
+            const isSpecialPrice = isCustom || isFree;
             return (
               <div
                 key={plan.id}
@@ -59,7 +61,7 @@ export default async function Packages() {
                 )}
 
                 <div className="mt-4 flex items-baseline gap-2">
-                  {isCustom ? (
+                  {isSpecialPrice ? (
                     <span
                       className={`text-2xl font-extrabold ${
                         plan.highlighted ? "text-white" : "text-ink-950"
@@ -89,7 +91,7 @@ export default async function Packages() {
                     plan.highlighted ? "text-ink-300" : "text-ink-400"
                   }`}
                 >
-                  {isCustom ? plan.period : `/ ${plan.period.replace("ريال / ", "")}`}
+                  {isSpecialPrice ? plan.period : `/ ${plan.period.replace("ريال / ", "")}`}
                 </p>
 
                 <ul className="mt-6 flex flex-1 flex-col gap-3">

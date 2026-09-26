@@ -1,5 +1,5 @@
 import { Check } from "lucide-react";
-import { whyMizaroReasons } from "@/lib/site-config";
+import { whyMizaroReasons, trustSectionTitle } from "@/lib/site-config";
 
 export default function WhyUs() {
   return (
@@ -10,20 +10,25 @@ export default function WhyUs() {
             الثقة
           </span>
           <h2 className="mt-3 text-3xl font-extrabold text-ink-950 sm:text-4xl">
-            أرقامك المالية تستحق وضوحًا أكبر
+            {trustSectionTitle}
           </h2>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {whyMizaroReasons.map((reason) => (
             <div
-              key={reason}
-              className="flex items-center gap-3.5 rounded-2xl border border-brand-100 bg-white p-5 shadow-sm"
+              key={reason.title}
+              className="flex items-start gap-3.5 rounded-2xl border border-brand-100 bg-white p-5 shadow-sm"
             >
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-800 text-white">
                 <Check className="h-4.5 w-4.5" strokeWidth={2} />
               </span>
-              <p className="text-sm font-bold text-ink-900">{reason}</p>
+              <div>
+                <p className="text-sm font-bold text-ink-900">{reason.title}</p>
+                <p className="mt-1 text-sm leading-6 text-ink-500">
+                  {reason.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>

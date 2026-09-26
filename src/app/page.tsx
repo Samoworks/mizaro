@@ -6,8 +6,10 @@ import FinancialSnapshot from "@/components/FinancialSnapshot";
 import ExternalDept from "@/components/ExternalDept";
 import SavingsHighlight from "@/components/SavingsHighlight";
 import WhyUs from "@/components/WhyUs";
+import DataProtection from "@/components/DataProtection";
+import BeforeAfter from "@/components/BeforeAfter";
 import HowWeWork from "@/components/HowWeWork";
-import PackagesPreview from "@/components/PackagesPreview";
+import Packages from "@/components/Packages";
 import PlanQuiz from "@/components/PlanQuiz";
 import FAQ from "@/components/FAQ";
 import TrustAreas from "@/components/TrustAreas";
@@ -23,13 +25,15 @@ export default function Home() {
         <TrustAreas />
         <ProblemsSolutions />
         <Services />
-        <FinancialSnapshot />
-        <ExternalDept />
-        <SavingsHighlight />
-        <WhyUs />
         <HowWeWork />
-        <PackagesPreview />
+        <FinancialSnapshot />
+        <Packages />
         <PlanQuiz />
+        <ExternalDept />
+        <WhyUs />
+        <DataProtection />
+        <BeforeAfter />
+        <SavingsHighlight />
         <FAQ />
         <FinalCta />
       </main>

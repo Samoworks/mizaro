@@ -45,26 +45,26 @@ export default async function Hero() {
               href="/contact"
               className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-bold text-ink-950 transition-colors hover:bg-brand-50 sm:w-auto"
             >
-              ابدأ الآن
+              احصل على تقييم مجاني
               <ArrowLeft className="h-4 w-4" />
             </Link>
-            <Link
-              href="/#quiz"
+            <a
+              href={whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-3.5 text-base font-bold text-white transition-colors hover:bg-white/10 sm:w-auto"
             >
-              اعرف الباقة المناسبة لك
-            </Link>
+              <MessageCircle className="h-4 w-4" />
+              تحدث معنا عبر واتساب
+            </a>
           </div>
 
-          <a
-            href={whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/#quiz"
             className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-ink-400 transition-colors hover:text-white"
           >
-            <MessageCircle className="h-4 w-4" />
-            أو تواصل عبر واتساب مباشرة
-          </a>
+            أو اعرف الباقة المناسبة لك أولًا
+          </Link>
         </div>
 
         {settings.heroImageUrl ? (

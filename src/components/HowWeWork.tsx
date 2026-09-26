@@ -1,7 +1,21 @@
-import { Compass, Search, Hammer, TrendingUp } from "lucide-react";
+import {
+  ClipboardCheck,
+  ListChecks,
+  FileSignature,
+  UploadCloud,
+  Settings2,
+  FileBarChart,
+} from "lucide-react";
 import { methodologySteps } from "@/lib/site-config";
 
-const icons = [Compass, Search, Hammer, TrendingUp];
+const icons = [
+  ClipboardCheck,
+  ListChecks,
+  FileSignature,
+  UploadCloud,
+  Settings2,
+  FileBarChart,
+];
 
 export default function HowWeWork() {
   return (
@@ -21,7 +35,7 @@ export default function HowWeWork() {
             aria-hidden
             className="pointer-events-none absolute inset-x-0 top-[42px] hidden h-px bg-gradient-to-l from-transparent via-white/15 to-transparent lg:block"
           />
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {methodologySteps.map((step, index) => {
               const Icon = icons[index];
               return (
