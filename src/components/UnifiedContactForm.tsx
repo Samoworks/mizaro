@@ -4,6 +4,10 @@ import { useState, type FormEvent } from "react";
 import { CheckCircle2 } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 
+/** رابط Google Apps Script Web App لتسجيل كل طلب كصف جديد في جدول بيانات Google Sheets */
+const GOOGLE_SHEET_ENDPOINT =
+  "https://script.google.com/macros/s/AKfycbw-ihXMVfE4_VFkLQUidaSFeWUr8auDHn-f60SDPZko2IKCo45ltr1dUPc3yXiqLaTx1g/exec";
+
 type FormState = {
   name: string;
   phone: string;
@@ -59,9 +63,20 @@ export default function UnifiedContactForm({
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    // ملاحظة: لا يوجد اتصال بخادم حاليًا — النموذج يعرض رسالة تأكيد
-    // ويفتح واتساب مع ملخص الطلب. لربطه بخادم فعلي أو بريد إلكتروني
-    // أو جدول بيانات، أضف الاستدعاء هنا قبل setSubmitted(true).
+    // نسجّل كل طلب كصف جديد في جدول بيانات Google Sheets (fire-and-forget،
+    // ما نوقف فتح واتساب لو تأخر أو فشل الاتصال بأي سبب).
+    try {
+      fetch(GOOGLE_SHEET_ENDPOINT, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(form),
+        keepalive: true,
+      }).catch(() => {});
+    } catch {
+      // تجاهل أي خطأ شبكة هنا — لا يمنع إتمام الطلب عبر واتساب
+    }
+
     const message = buildSummaryMessage(form);
     const whatsappUrl = `https://wa.me/${
       whatsappNumber || siteConfig.whatsappNumber
