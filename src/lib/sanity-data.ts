@@ -13,8 +13,6 @@ import type { SanityImageSource } from "@sanity/image-url";
 import {
   siteConfig as defaultSiteConfig,
   pricingPlans as defaultPricingPlans,
-  ecommercePackages as defaultEcommercePackages,
-  ecommercePackagesNote as defaultEcommercePackagesNote,
   faqs as defaultFaqs,
 } from "@/lib/site-config";
 
@@ -40,7 +38,6 @@ type SiteSettingsDoc = {
   whatsappDisplay?: string;
   email?: string;
   whatsappDefaultMessage?: string;
-  ecommercePackagesNote?: string;
   logo?: SanityImageSource;
   heroImage?: SanityImageSource;
   heroBadge?: string;
@@ -111,14 +108,6 @@ export async function buildWhatsAppLinkAsync(message?: string) {
   return `https://wa.me/${settings.whatsappNumber}?text=${text}`;
 }
 
-export async function getEcommercePackagesNote(): Promise<string> {
-  const doc = await safeFetch<{ ecommercePackagesNote?: string } | null>(
-    `*[_type == "siteSettings"][0]{ecommercePackagesNote}`,
-    null
-  );
-  return doc?.ecommercePackagesNote || defaultEcommercePackagesNote;
-}
-
 export async function getPricingPlans(): Promise<PricingPlan[]> {
   const docs = await safeFetch<
     Array<{
@@ -152,48 +141,6 @@ export async function getPricingPlans(): Promise<PricingPlan[]> {
     name: plan.name,
     price: plan.price,
     period: plan.period,
-    features: plan.features ?? [],
-    ctaLabel: plan.ctaLabel ?? "اطلب الآن",
-    highlighted: Boolean(plan.highlighted),
-  }));
-}
-
-export async function getEcommercePackages(): Promise<PricingPlan[]> {
-  const docs = await safeFetch<
-    Array<{
-      planId: string;
-      name: string;
-      price: string;
-      period: string;
-      tagline?: string | null;
-      features?: string[];
-      ctaLabel?: string;
-      highlighted?: boolean;
-    }>
-  >(
-    `*[_type == "ecommercePackage"] | order(order asc){planId, name, price, period, tagline, features, ctaLabel, highlighted}`,
-    []
-  );
-
-  if (!docs.length) {
-    return defaultEcommercePackages.map((plan) => ({
-      id: plan.id,
-      name: plan.name,
-      price: plan.price,
-      period: plan.period,
-      tagline: plan.tagline,
-      features: plan.features,
-      ctaLabel: plan.ctaLabel,
-      highlighted: plan.highlighted,
-    }));
-  }
-
-  return docs.map((plan) => ({
-    id: plan.planId,
-    name: plan.name,
-    price: plan.price,
-    period: plan.period,
-    tagline: plan.tagline ?? null,
     features: plan.features ?? [],
     ctaLabel: plan.ctaLabel ?? "اطلب الآن",
     highlighted: Boolean(plan.highlighted),

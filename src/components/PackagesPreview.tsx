@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { ArrowLeft, Calculator, ShoppingBag } from "lucide-react";
-import { getPricingPlans, getEcommercePackages } from "@/lib/sanity-data";
+import { ArrowLeft, Calculator, PiggyBank } from "lucide-react";
+import { getPricingPlans } from "@/lib/sanity-data";
+import { savingsHighlight } from "@/lib/site-config";
 
-/** يرجع أقل سعر رقمي من قائمة باقات (يتجاهل الأسعار النصية مثل "تواصل معنا") */
+/** يرجع أقل سعر رقمي من قائمة باقات (يتجاهل الأسعار النصية مثل "تواصل معي") */
 function cheapestPrice(plans: { price: string }[]): number | null {
   const numbers = plans
     .map((p) => Number(p.price.replace(/[^\d.]/g, "")))
@@ -11,13 +12,8 @@ function cheapestPrice(plans: { price: string }[]): number | null {
 }
 
 export default async function PackagesPreview() {
-  const [pricingPlans, ecommercePackages] = await Promise.all([
-    getPricingPlans(),
-    getEcommercePackages(),
-  ]);
-
+  const pricingPlans = await getPricingPlans();
   const accountingFrom = cheapestPrice(pricingPlans);
-  const ecommerceFrom = cheapestPrice(ecommercePackages);
 
   return (
     <section className="bg-white py-20 sm:py-24">
@@ -27,11 +23,11 @@ export default async function PackagesPreview() {
             الباقات
           </span>
           <h2 className="mt-3 text-3xl font-extrabold text-ink-950 sm:text-4xl">
-            باقات واضحة لكل مجال
+            باقة واضحة تناسب نشاطك
           </h2>
           <p className="mt-4 text-ink-500 leading-8">
-            أسعار معروفة مسبقًا بدون رسوم مفاجئة، مقسّمة بوضوح بين المحاسبة
-            والضريبة والتجارة الإلكترونية.
+            أسعار معروفة مسبقًا بدون رسوم مفاجئة، وأقل بكثير من تكلفة توظيف
+            محاسب دائم.
           </p>
         </div>
 
@@ -50,28 +46,23 @@ export default async function PackagesPreview() {
                 </p>
               </div>
             </div>
-            <Link href="/packages#accounting" className="shrink-0 text-brand-700">
+            <Link href="/packages" className="shrink-0 text-brand-700">
               <ArrowLeft className="h-5 w-5" />
             </Link>
           </div>
 
-          <div className="flex items-center justify-between gap-4 rounded-2xl border border-ink-100 p-7">
-            <div className="flex items-center gap-4">
-              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-ink-100 text-ink-700">
-                <ShoppingBag className="h-6 w-6" strokeWidth={1.7} />
-              </span>
-              <div>
-                <h3 className="text-base font-bold text-ink-950">التجارة الإلكترونية</h3>
-                <p className="mt-1 text-sm text-ink-500">
-                  {ecommerceFrom
-                    ? `تبدأ من ${ecommerceFrom} ريال مرة واحدة`
-                    : "باقات مرنة تناسب متجرك"}
-                </p>
-              </div>
+          <div className="flex items-center gap-4 rounded-2xl border border-brand-100 bg-brand-50/40 p-7">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-800 text-white">
+              <PiggyBank className="h-6 w-6" strokeWidth={1.7} />
+            </span>
+            <div>
+              <h3 className="text-base font-bold text-ink-950">
+                {savingsHighlight.title}
+              </h3>
+              <p className="mt-1 text-sm text-ink-500">
+                مقارنة بتوظيف محاسب دائم بدوام كامل
+              </p>
             </div>
-            <Link href="/packages#ecommerce" className="shrink-0 text-ink-700">
-              <ArrowLeft className="h-5 w-5" />
-            </Link>
           </div>
         </div>
 
@@ -80,7 +71,7 @@ export default async function PackagesPreview() {
             href="/packages"
             className="inline-flex items-center gap-2 rounded-full bg-ink-950 px-7 py-3.5 text-sm font-bold text-white transition-colors hover:bg-brand-800"
           >
-            استعرض جميع الباقات
+            استعرض الباقات
             <ArrowLeft className="h-4 w-4" />
           </Link>
         </div>

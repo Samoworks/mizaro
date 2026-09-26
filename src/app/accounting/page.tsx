@@ -7,7 +7,6 @@ import Services from "@/components/Services";
 import Packages from "@/components/Packages";
 import FAQ from "@/components/FAQ";
 import DomainCtaBanner from "@/components/DomainCtaBanner";
-import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "المحاسبة والضريبة",
@@ -24,18 +23,16 @@ export default function AccountingPage() {
           icon={Calculator}
           eyebrow="المحاسبة والضريبة"
           title="محاسبتك تحت السيطرة"
-          description="نرتب أرقام نشاطك ونساعدك على متابعة التزاماتك المالية والضريبية بوضوح، دون الحاجة إلى بناء قسم محاسبي كامل من البداية."
-          variant="accounting"
+          description="أرتب أرقام نشاطك وأساعدك على متابعة التزاماتك المالية والضريبية بوضوح، دون الحاجة إلى توظيف محاسب دائم."
         />
         <Services />
         <Packages />
         <DomainCtaBanner
           eyebrow="جاهز نبدأ؟"
           title="جاهز ترتب حسابات نشاطك؟"
-          description={`عبّي بياناتك وسيتواصل معك فريق ${siteConfig.companyName} لاقتراح الباقة الأنسب.`}
-          href="/contact?service=accounting"
+          description="عبّي بياناتك، وبتواصل معك بنفسي لاقتراح الباقة الأنسب."
+          href="/contact"
           ctaLabel="اطلب الخدمة"
-          variant="accounting"
         />
         <FAQ />
       </main>

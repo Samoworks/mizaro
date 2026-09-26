@@ -8,12 +8,11 @@ export default defineType({
     { name: "general", title: "عام", default: true },
     { name: "brand", title: "الهوية والبنرات" },
     { name: "contact", title: "التواصل" },
-    { name: "packages", title: "الباقات" },
   ],
   fields: [
     defineField({
       name: "companyName",
-      title: "اسم الشركة (عربي)",
+      title: "اسم العلامة (عربي)",
       type: "string",
       group: "general",
       validation: (rule) => rule.required(),
@@ -118,13 +117,6 @@ export default defineType({
       type: "text",
       rows: 2,
       group: "contact",
-    }),
-    defineField({
-      name: "ecommercePackagesNote",
-      title: "ملاحظة أسفل باقات التجارة الإلكترونية",
-      type: "text",
-      rows: 2,
-      group: "packages",
     }),
   ],
   preview: {

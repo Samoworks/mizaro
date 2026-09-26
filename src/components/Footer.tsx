@@ -7,10 +7,9 @@ import MizaroMark from "@/components/MizaroMark";
 const links = [
   { href: "/", label: "الرئيسية" },
   { href: "/accounting", label: "المحاسبة والضريبة" },
-  { href: "/ecommerce", label: "التجارة الإلكترونية" },
   { href: "/packages", label: "الباقات" },
-  { href: "/about", label: "من نحن" },
-  { href: "/contact", label: "تواصل معنا" },
+  { href: "/about", label: "من أنا" },
+  { href: "/contact", label: "تواصل معي" },
 ];
 
 export default async function Footer() {
@@ -35,8 +34,7 @@ export default async function Footer() {
               </span>
             </div>
             <p className="mt-4 max-w-xs text-sm leading-7 text-ink-400">
-              {siteConfig.tagline} — المحاسبة والضريبة والتجارة الإلكترونية،
-              من مكان واحد.
+              {siteConfig.tagline}.
             </p>
           </div>
 

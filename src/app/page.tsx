@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import DomainSelector from "@/components/DomainSelector";
+import ProblemsSolutions from "@/components/ProblemsSolutions";
+import SavingsHighlight from "@/components/SavingsHighlight";
 import WhyUs from "@/components/WhyUs";
 import HowWeWork from "@/components/HowWeWork";
 import PackagesPreview from "@/components/PackagesPreview";
@@ -14,8 +15,9 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <DomainSelector />
         <TrustAreas />
+        <ProblemsSolutions />
+        <SavingsHighlight />
         <WhyUs />
         <HowWeWork />
         <PackagesPreview />

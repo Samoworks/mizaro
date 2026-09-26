@@ -10,7 +10,7 @@ export default function WhyUs() {
             لماذا مِزارو؟
           </span>
           <h2 className="mt-3 text-3xl font-extrabold text-ink-950 sm:text-4xl">
-            لأننا ننظر إلى العمل كمنظومة واحدة
+            خبرة تتعامل معها مباشرة، بدون وسطاء
           </h2>
         </div>
 

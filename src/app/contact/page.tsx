@@ -7,8 +7,8 @@ import UnifiedContactForm from "@/components/UnifiedContactForm";
 import { getSiteSettings, buildWhatsAppLinkAsync } from "@/lib/sanity-data";
 
 export const metadata: Metadata = {
-  title: "تواصل معنا",
-  description: "تواصل مع مِزارو لطلب خدمات المحاسبة والضريبة أو التجارة الإلكترونية.",
+  title: "تواصل معي",
+  description: "تواصل مع مِزارو لطلب خدمات المحاسبة والضريبة عن بُعد.",
 };
 
 export default async function ContactPage() {
@@ -24,13 +24,13 @@ export default async function ContactPage() {
         <section className="bg-white py-20 sm:py-24">
           <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
             <span className="text-sm font-bold tracking-wide text-brand-600">
-              تواصل معنا
+              تواصل معي
             </span>
             <h1 className="mt-3 text-3xl font-extrabold text-ink-950 sm:text-4xl">
               جاهز نبدأ؟ عبّي بياناتك
             </h1>
             <p className="mt-4 text-ink-500 leading-8">
-              عبّي النموذج وسنتواصل معك لاقتراح الخطوة الأنسب لنشاطك.
+              عبّي النموذج وبتواصل معك بنفسي لاقتراح الخطوة الأنسب لنشاطك.
             </p>
           </div>
 

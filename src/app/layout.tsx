@@ -14,7 +14,7 @@ import { BRAND_SHADES } from "@/lib/color-scale";
 import WhatsAppFloatButton from "@/components/WhatsAppFloatButton";
 
 const description =
-  "مِزارو تقدم حلول المحاسبة والضريبة والتجارة الإلكترونية للمنشآت وأصحاب الأعمال، من التنظيم المالي إلى تحسين المتاجر والأداء الرقمي.";
+  "مِزارو خدمة محاسبة وضريبة عن بُعد يقدّمها محاسب مستقل للمنشآت وأصحاب الأعمال في السعودية، بأسعار أوضح بكثير من تكلفة توظيف محاسب دائم.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
@@ -30,13 +30,10 @@ export const metadata: Metadata = {
     "ضريبة القيمة المضافة",
     "إقرار ضريبي",
     "محاسب عن بعد السعودية",
+    "محاسب مستقل",
     "محاسب في الدمام",
     "محاسبة عن بعد الدمام",
-    "شركة محاسبة الدمام",
-    "تطوير متاجر إلكترونية",
-    "تحسين محركات بحث للمتاجر",
-    "إدارة حملات إعلانية للمتاجر",
-    "حلول الأعمال الرقمية",
+    "توفير تكلفة محاسب",
   ],
   authors: [{ name: siteConfig.companyName }],
   alternates: {

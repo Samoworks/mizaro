@@ -2,13 +2,12 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Packages from "@/components/Packages";
-import EcommercePackages from "@/components/EcommercePackages";
+import SavingsHighlight from "@/components/SavingsHighlight";
 import FinalCta from "@/components/FinalCta";
 
 export const metadata: Metadata = {
   title: "الباقات",
-  description:
-    "باقات مِزارو مقسّمة بوضوح: باقات المحاسبة والضريبة، وباقات التجارة الإلكترونية.",
+  description: "باقات مِزارو للمحاسبة والضريبة — أسعار واضحة، بدون رسوم مفاجئة.",
 };
 
 export default function PackagesPage() {
@@ -21,15 +20,14 @@ export default function PackagesPage() {
             الباقات
           </span>
           <h1 className="mt-3 text-3xl font-extrabold text-ink-950 sm:text-4xl">
-            باقات واضحة، مقسّمة حسب المجال
+            باقة واضحة، بسعر أوفر من محاسب دائم
           </h1>
           <p className="mt-4 text-ink-500 leading-8">
-            كل باقة مستقلة بسعرها ومزاياها، ويمكنك الجمع بين المجالين حسب
-            احتياج نشاطك.
+            كل باقة واضحة السعر والمزايا، وتقدر تبدأ أو تلغي شهريًا.
           </p>
         </div>
         <Packages />
-        <EcommercePackages />
+        <SavingsHighlight />
         <FinalCta />
       </main>
       <Footer />

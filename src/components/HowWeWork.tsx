@@ -12,7 +12,7 @@ export default function HowWeWork() {
             منهجية العمل
           </span>
           <h2 className="mt-3 text-3xl font-extrabold text-white sm:text-4xl">
-            كيف نعمل؟
+            كيف أعمل؟
           </h2>
         </div>
 

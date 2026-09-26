@@ -1,38 +1,17 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { useSearchParams } from "next/navigation";
 import { CheckCircle2 } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
-
-const serviceTypes = [
-  { id: "accounting", label: "المحاسبة والضريبة" },
-  { id: "ecommerce", label: "التجارة الإلكترونية" },
-  { id: "both", label: "كلاهما" },
-] as const;
-
-type ServiceType = (typeof serviceTypes)[number]["id"];
-
-const platforms = ["سلة", "زد", "شوبيفاي", "ووكومرس", "منصة أخرى"];
-const yesNo = ["نعم", "لا"];
 
 type FormState = {
   name: string;
   phone: string;
   email: string;
-  serviceType: ServiceType;
-  // التجارة الإلكترونية
-  storeUrl: string;
-  platform: string;
-  isLive: string;
-  hasAds: string;
-  mainProblem: string;
-  // المحاسبة والضريبة
   activityType: string;
   activitySize: string;
   branchesCount: string;
   requestedService: string;
-  // مشترك
   notes: string;
 };
 
@@ -40,12 +19,6 @@ const initialState: FormState = {
   name: "",
   phone: "",
   email: "",
-  serviceType: "accounting",
-  storeUrl: "",
-  platform: platforms[0],
-  isLive: "نعم",
-  hasAds: "لا",
-  mainProblem: "",
   activityType: "",
   activitySize: "",
   branchesCount: "",
@@ -54,37 +27,17 @@ const initialState: FormState = {
 };
 
 function buildSummaryMessage(form: FormState) {
-  const serviceLabel =
-    serviceTypes.find((s) => s.id === form.serviceType)?.label ?? form.serviceType;
-
   const lines = [
     "طلب تواصل جديد — مِزارو:",
     `الاسم: ${form.name}`,
     `الجوال: ${form.phone}`,
     form.email ? `البريد الإلكتروني: ${form.email}` : null,
-    `نوع الخدمة: ${serviceLabel}`,
+    "— تفاصيل المحاسبة والضريبة —",
+    `نوع النشاط: ${form.activityType || "غير محدد"}`,
+    `حجم النشاط: ${form.activitySize || "غير محدد"}`,
+    `عدد الفروع: ${form.branchesCount || "غير محدد"}`,
+    `الخدمة المطلوبة: ${form.requestedService || "غير محدد"}`,
   ];
-
-  if (form.serviceType === "ecommerce" || form.serviceType === "both") {
-    lines.push(
-      "— تفاصيل التجارة الإلكترونية —",
-      `رابط المتجر: ${form.storeUrl || "غير محدد"}`,
-      `منصة المتجر: ${form.platform}`,
-      `هل المتجر يعمل حاليًا: ${form.isLive}`,
-      `هل لديه إعلانات: ${form.hasAds}`,
-      `المشكلة الرئيسية: ${form.mainProblem || "غير محدد"}`
-    );
-  }
-
-  if (form.serviceType === "accounting" || form.serviceType === "both") {
-    lines.push(
-      "— تفاصيل المحاسبة والضريبة —",
-      `نوع النشاط: ${form.activityType || "غير محدد"}`,
-      `حجم النشاط: ${form.activitySize || "غير محدد"}`,
-      `عدد الفروع: ${form.branchesCount || "غير محدد"}`,
-      `الخدمة المطلوبة: ${form.requestedService || "غير محدد"}`
-    );
-  }
 
   if (form.notes) lines.push(`ملاحظات: ${form.notes}`);
 
@@ -96,14 +49,7 @@ export default function UnifiedContactForm({
 }: {
   whatsappNumber?: string;
 }) {
-  const searchParams = useSearchParams();
-  const [form, setForm] = useState<FormState>(() => {
-    const preset = searchParams.get("service");
-    if (preset === "accounting" || preset === "ecommerce" || preset === "both") {
-      return { ...initialState, serviceType: preset };
-    }
-    return initialState;
-  });
+  const [form, setForm] = useState<FormState>(initialState);
   const [submitted, setSubmitted] = useState(false);
 
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
@@ -131,11 +77,11 @@ export default function UnifiedContactForm({
       <div className="flex flex-col items-center gap-4 rounded-2xl border border-brand-200 bg-brand-50 p-10 text-center">
         <CheckCircle2 className="h-12 w-12 text-brand-700" />
         <h3 className="text-xl font-extrabold text-ink-950">
-          تم استلام طلبك، وسنتواصل معك قريبًا.
+          تم استلام طلبك، وبتواصل معك قريبًا.
         </h3>
         <p className="max-w-md text-sm leading-7 text-ink-500">
-          فتحنا لك محادثة واتساب بملخص طلبك لتسريع التواصل. إذا ما فتحت
-          تلقائيًا، تقدر تراسلنا مباشرة عبر زر واتساب في أسفل الشاشة.
+          فتحت لك محادثة واتساب بملخص طلبك لتسريع التواصل. إذا ما فتحت
+          تلقائيًا، تقدر تراسلني مباشرة عبر زر واتساب في أسفل الشاشة.
         </p>
         <button
           type="button"
@@ -187,161 +133,47 @@ export default function UnifiedContactForm({
         />
       </Field>
 
-      <fieldset className="sm:col-span-2">
-        <legend className="mb-2.5 block text-sm font-bold text-ink-700">
-          نوع الخدمة
-        </legend>
-        <div className="flex flex-wrap gap-3">
-          {serviceTypes.map((type) => (
-            <label
-              key={type.id}
-              className={`flex cursor-pointer items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
-                form.serviceType === type.id
-                  ? "border-brand-700 bg-brand-50 text-brand-800"
-                  : "border-ink-200 text-ink-600 hover:border-ink-300"
-              }`}
-            >
-              <input
-                type="radio"
-                name="serviceType"
-                value={type.id}
-                checked={form.serviceType === type.id}
-                onChange={() => update("serviceType", type.id)}
-                className="sr-only"
-              />
-              {type.label}
-            </label>
-          ))}
-        </div>
-      </fieldset>
+      <Field label="نوع النشاط" htmlFor="activityType">
+        <input
+          id="activityType"
+          value={form.activityType}
+          onChange={(e) => update("activityType", e.target.value)}
+          className={inputClass}
+          placeholder="مثال: متجر، نشاط خدمي، مشروع صغير..."
+        />
+      </Field>
 
-      {(form.serviceType === "ecommerce" || form.serviceType === "both") && (
-        <>
-          <Field label="رابط المتجر" htmlFor="storeUrl" full>
-            <input
-              id="storeUrl"
-              type="url"
-              value={form.storeUrl}
-              onChange={(e) => update("storeUrl", e.target.value)}
-              className={inputClass}
-              placeholder="https://mystore.com"
-            />
-          </Field>
+      <Field label="حجم النشاط" htmlFor="activitySize">
+        <input
+          id="activitySize"
+          value={form.activitySize}
+          onChange={(e) => update("activitySize", e.target.value)}
+          className={inputClass}
+          placeholder="مثال: مبيعات شهرية تقريبية"
+        />
+      </Field>
 
-          <Field label="منصة المتجر" htmlFor="platform">
-            <select
-              id="platform"
-              value={form.platform}
-              onChange={(e) => update("platform", e.target.value)}
-              className={inputClass}
-            >
-              {platforms.map((platform) => (
-                <option key={platform} value={platform}>
-                  {platform}
-                </option>
-              ))}
-            </select>
-          </Field>
+      <Field label="عدد الفروع" htmlFor="branchesCount">
+        <input
+          id="branchesCount"
+          type="number"
+          min={1}
+          value={form.branchesCount}
+          onChange={(e) => update("branchesCount", e.target.value)}
+          className={inputClass}
+          placeholder="1"
+        />
+      </Field>
 
-          <Field label="ما المشكلة الرئيسية؟" htmlFor="mainProblem">
-            <input
-              id="mainProblem"
-              value={form.mainProblem}
-              onChange={(e) => update("mainProblem", e.target.value)}
-              className={inputClass}
-              placeholder="مثال: المنتجات لا تظهر في Google"
-            />
-          </Field>
-
-          <fieldset>
-            <legend className="mb-2 block text-sm font-bold text-ink-700">
-              هل المتجر يعمل حاليًا؟
-            </legend>
-            <div className="flex gap-4">
-              {yesNo.map((option) => (
-                <label key={option} className="flex items-center gap-2 text-sm text-ink-700">
-                  <input
-                    type="radio"
-                    name="isLive"
-                    value={option}
-                    checked={form.isLive === option}
-                    onChange={(e) => update("isLive", e.target.value)}
-                    className="h-4 w-4 accent-brand-700"
-                  />
-                  {option}
-                </label>
-              ))}
-            </div>
-          </fieldset>
-
-          <fieldset>
-            <legend className="mb-2 block text-sm font-bold text-ink-700">
-              هل لديك إعلانات؟
-            </legend>
-            <div className="flex gap-4">
-              {yesNo.map((option) => (
-                <label key={option} className="flex items-center gap-2 text-sm text-ink-700">
-                  <input
-                    type="radio"
-                    name="hasAds"
-                    value={option}
-                    checked={form.hasAds === option}
-                    onChange={(e) => update("hasAds", e.target.value)}
-                    className="h-4 w-4 accent-brand-700"
-                  />
-                  {option}
-                </label>
-              ))}
-            </div>
-          </fieldset>
-        </>
-      )}
-
-      {(form.serviceType === "accounting" || form.serviceType === "both") && (
-        <>
-          <Field label="نوع النشاط" htmlFor="activityType">
-            <input
-              id="activityType"
-              value={form.activityType}
-              onChange={(e) => update("activityType", e.target.value)}
-              className={inputClass}
-              placeholder="مثال: متجر، شركة خدمية، مشروع صغير..."
-            />
-          </Field>
-
-          <Field label="حجم النشاط" htmlFor="activitySize">
-            <input
-              id="activitySize"
-              value={form.activitySize}
-              onChange={(e) => update("activitySize", e.target.value)}
-              className={inputClass}
-              placeholder="مثال: مبيعات شهرية تقريبية"
-            />
-          </Field>
-
-          <Field label="عدد الفروع" htmlFor="branchesCount">
-            <input
-              id="branchesCount"
-              type="number"
-              min={1}
-              value={form.branchesCount}
-              onChange={(e) => update("branchesCount", e.target.value)}
-              className={inputClass}
-              placeholder="1"
-            />
-          </Field>
-
-          <Field label="الخدمة المطلوبة" htmlFor="requestedService">
-            <input
-              id="requestedService"
-              value={form.requestedService}
-              onChange={(e) => update("requestedService", e.target.value)}
-              className={inputClass}
-              placeholder="مثال: باقة متقدم، إقرار ضريبي..."
-            />
-          </Field>
-        </>
-      )}
+      <Field label="الخدمة المطلوبة" htmlFor="requestedService">
+        <input
+          id="requestedService"
+          value={form.requestedService}
+          onChange={(e) => update("requestedService", e.target.value)}
+          className={inputClass}
+          placeholder="مثال: باقة متقدم، إقرار ضريبي..."
+        />
+      </Field>
 
       <Field label="ملاحظات" htmlFor="notes" full>
         <textarea
@@ -350,7 +182,7 @@ export default function UnifiedContactForm({
           value={form.notes}
           onChange={(e) => update("notes", e.target.value)}
           className={inputClass}
-          placeholder="أي تفاصيل إضافية تحب تخبرنا فيها"
+          placeholder="أي تفاصيل إضافية تحب تخبرني فيها"
         />
       </Field>
 

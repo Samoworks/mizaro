@@ -8,9 +8,9 @@ import FinalCta from "@/components/FinalCta";
 import { siteConfig, whyMizaroReasons } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "من نحن",
+  title: "من أنا",
   description:
-    "مِزارو شركة حلول أعمال تجمع بين المحاسبة والضريبة والتجارة الإلكترونية، وتنظر إلى عمل عملائها كمنظومة واحدة.",
+    "مِزارو محاسب مستقل يقدّم خدمات المحاسبة والضريبة عن بُعد للمنشآت وأصحاب الأعمال، بأسعار أوضح بكثير من تكلفة توظيف محاسب دائم.",
 };
 
 export default function AboutPage() {
@@ -20,17 +20,16 @@ export default function AboutPage() {
       <main>
         <div className="mx-auto max-w-3xl px-4 pt-20 text-center sm:px-6 sm:pt-28">
           <span className="text-sm font-bold tracking-wide text-brand-600">
-            من نحن
+            من أنا
           </span>
           <h1 className="mt-3 text-3xl font-extrabold text-ink-950 sm:text-4xl">
-            مِزارو: حلول الأعمال والتجارة الرقمية
+            {siteConfig.companyName}: محاسب مستقل عن بُعد
           </h1>
           <p className="mt-5 text-ink-500 leading-8">
-            {siteConfig.companyName} شركة حلول أعمال تجمع بين مجالين مستقلين
-            — المحاسبة والضريبة، والتجارة الإلكترونية — لمساعدة المنشآت على
-            تنظيم أعمالها، تحسين عملياتها، واتخاذ قرارات أفضل. لا نتعامل مع
-            نشاطك كملف واحد منفصل عن الآخر؛ بل ننظر إلى العمل ككل، ونربط
-            الجانب المالي بالجانب الرقمي حين يكون ذلك مفيدًا لك.
+            أنا محاسب مستقل أقدّم خدمات المحاسبة والضريبة عن بُعد للمنشآت
+            الصغيرة والمتوسطة وأصحاب الأعمال في السعودية. أتابع حساباتك بنفسي
+            مباشرة، بدون فريق كبير أو وسطاء، وبسعر أوضح بكثير من تكلفة توظيف
+            محاسب دائم بدوام كامل.
           </p>
         </div>
 
@@ -38,10 +37,10 @@ export default function AboutPage() {
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <div className="mx-auto max-w-2xl text-center">
               <span className="text-sm font-bold tracking-wide text-brand-600">
-                لماذا مِزارو؟
+                لماذا تتعامل معي؟
               </span>
               <h2 className="mt-3 text-3xl font-extrabold text-ink-950 sm:text-4xl">
-                لأننا ننظر إلى العمل كمنظومة واحدة
+                خبرة تتعامل معها مباشرة، بدون وسطاء
               </h2>
             </div>
 

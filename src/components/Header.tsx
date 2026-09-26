@@ -7,10 +7,9 @@ import MobileNav from "@/components/MobileNav";
 const navLinks = [
   { href: "/", label: "الرئيسية" },
   { href: "/accounting", label: "المحاسبة والضريبة" },
-  { href: "/ecommerce", label: "التجارة الإلكترونية" },
   { href: "/packages", label: "الباقات" },
-  { href: "/about", label: "من نحن" },
-  { href: "/contact", label: "تواصل معنا" },
+  { href: "/about", label: "من أنا" },
+  { href: "/contact", label: "تواصل معي" },
 ];
 
 export default async function Header() {
