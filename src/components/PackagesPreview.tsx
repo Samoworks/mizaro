@@ -1,7 +1,24 @@
 import Link from "next/link";
 import { ArrowLeft, Calculator, ShoppingBag } from "lucide-react";
+import { getPricingPlans, getEcommercePackages } from "@/lib/sanity-data";
 
-export default function PackagesPreview() {
+/** يرجع أقل سعر رقمي من قائمة باقات (يتجاهل الأسعار النصية مثل "تواصل معنا") */
+function cheapestPrice(plans: { price: string }[]): number | null {
+  const numbers = plans
+    .map((p) => Number(p.price.replace(/[^\d.]/g, "")))
+    .filter((n) => Number.isFinite(n) && n > 0);
+  return numbers.length ? Math.min(...numbers) : null;
+}
+
+export default async function PackagesPreview() {
+  const [pricingPlans, ecommercePackages] = await Promise.all([
+    getPricingPlans(),
+    getEcommercePackages(),
+  ]);
+
+  const accountingFrom = cheapestPrice(pricingPlans);
+  const ecommerceFrom = cheapestPrice(ecommercePackages);
+
   return (
     <section className="bg-white py-20 sm:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -26,7 +43,11 @@ export default function PackagesPreview() {
               </span>
               <div>
                 <h3 className="text-base font-bold text-ink-950">المحاسبة والضريبة</h3>
-                <p className="mt-1 text-sm text-ink-500">تبدأ من 299 ريال / شهريًا</p>
+                <p className="mt-1 text-sm text-ink-500">
+                  {accountingFrom
+                    ? `تبدأ من ${accountingFrom} ريال / شهريًا`
+                    : "باقات مرنة تناسب نشاطك"}
+                </p>
               </div>
             </div>
             <Link href="/packages#accounting" className="shrink-0 text-brand-700">
@@ -41,7 +62,11 @@ export default function PackagesPreview() {
               </span>
               <div>
                 <h3 className="text-base font-bold text-ink-950">التجارة الإلكترونية</h3>
-                <p className="mt-1 text-sm text-ink-500">تبدأ من 199 ريال مرة واحدة</p>
+                <p className="mt-1 text-sm text-ink-500">
+                  {ecommerceFrom
+                    ? `تبدأ من ${ecommerceFrom} ريال مرة واحدة`
+                    : "باقات مرنة تناسب متجرك"}
+                </p>
               </div>
             </div>
             <Link href="/packages#ecommerce" className="shrink-0 text-ink-700">

@@ -62,7 +62,7 @@ export default async function EcommercePackages() {
                 </span>
               </div>
               <p className={`mt-1 text-sm ${plan.highlighted ? "text-ink-300" : "text-ink-400"}`}>
-                {plan.period.replace(/^.*—\s*/, "")}
+                {plan.period.replace(/^ريال\s*[/—]\s*/, "")}
               </p>
 
               <ul className="mt-6 flex flex-1 flex-col gap-2.5">
