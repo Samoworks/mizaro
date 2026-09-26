@@ -36,7 +36,7 @@ export default async function ContactPage() {
 
           <div className="mx-auto mt-10 max-w-3xl px-4 sm:px-6">
             <Suspense fallback={null}>
-              <UnifiedContactForm whatsappNumber={settings.whatsappNumber} />
+              <UnifiedContactForm />
             </Suspense>
 
             <div className="mt-10 flex flex-col items-center justify-center gap-4 text-center sm:flex-row sm:gap-8">

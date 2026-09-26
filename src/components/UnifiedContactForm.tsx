@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { CheckCircle2 } from "lucide-react";
-import { siteConfig } from "@/lib/site-config";
+import { CheckCircle2, AlertCircle } from "lucide-react";
 
 /** رابط Google Apps Script Web App لتسجيل كل طلب كصف جديد في جدول بيانات Google Sheets */
 const GOOGLE_SHEET_ENDPOINT =
@@ -30,64 +29,39 @@ const initialState: FormState = {
   notes: "",
 };
 
-function buildSummaryMessage(form: FormState) {
-  const lines = [
-    "طلب تواصل جديد — مِزارو:",
-    `الاسم: ${form.name}`,
-    `الجوال: ${form.phone}`,
-    form.email ? `البريد الإلكتروني: ${form.email}` : null,
-    "— تفاصيل المحاسبة والضريبة —",
-    `نوع النشاط: ${form.activityType || "غير محدد"}`,
-    `حجم النشاط: ${form.activitySize || "غير محدد"}`,
-    `عدد الفروع: ${form.branchesCount || "غير محدد"}`,
-    `الخدمة المطلوبة: ${form.requestedService || "غير محدد"}`,
-  ];
-
-  if (form.notes) lines.push(`ملاحظات: ${form.notes}`);
-
-  return lines.filter(Boolean).join("\n");
-}
-
-export default function UnifiedContactForm({
-  whatsappNumber,
-}: {
-  whatsappNumber?: string;
-}) {
+export default function UnifiedContactForm() {
   const [form, setForm] = useState<FormState>(initialState);
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle"
+  );
 
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
     setForm((prev) => ({ ...prev, [key]: value }));
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setStatus("sending");
 
-    // نسجّل كل طلب كصف جديد في جدول بيانات Google Sheets (fire-and-forget،
-    // ما نوقف فتح واتساب لو تأخر أو فشل الاتصال بأي سبب).
     try {
-      fetch(GOOGLE_SHEET_ENDPOINT, {
+      // نسجّل الطلب كصف جديد في جدول بيانات Google Sheets. الرد يكون
+      // opaque (بسبب no-cors) فما نقدر نقرأ محتواه، بس لو الطلب وصل
+      // للشبكة بدون خطأ اتصال، نعتبره أُرسل بنجاح.
+      await fetch(GOOGLE_SHEET_ENDPOINT, {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify(form),
         keepalive: true,
-      }).catch(() => {});
+      });
+      setStatus("sent");
+      setForm(initialState);
     } catch {
-      // تجاهل أي خطأ شبكة هنا — لا يمنع إتمام الطلب عبر واتساب
+      setStatus("error");
     }
-
-    const message = buildSummaryMessage(form);
-    const whatsappUrl = `https://wa.me/${
-      whatsappNumber || siteConfig.whatsappNumber
-    }?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
-
-    setSubmitted(true);
-    setForm(initialState);
   }
 
-  if (submitted) {
+  if (status === "sent") {
     return (
       <div className="flex flex-col items-center gap-4 rounded-2xl border border-brand-200 bg-brand-50 p-10 text-center">
         <CheckCircle2 className="h-12 w-12 text-brand-700" />
@@ -95,12 +69,12 @@ export default function UnifiedContactForm({
           تم استلام طلبك، وبتواصل معك قريبًا.
         </h3>
         <p className="max-w-md text-sm leading-7 text-ink-500">
-          فتحت لك محادثة واتساب بملخص طلبك لتسريع التواصل. إذا ما فتحت
-          تلقائيًا، تقدر تراسلني مباشرة عبر زر واتساب في أسفل الشاشة.
+          وصلني طلبك، وبراجعه وأتواصل معك على رقم الجوال أو البريد
+          الإلكتروني اللي كتبته.
         </p>
         <button
           type="button"
-          onClick={() => setSubmitted(false)}
+          onClick={() => setStatus("idle")}
           className="mt-2 text-sm font-bold text-brand-700 underline underline-offset-4"
         >
           إرسال طلب جديد
@@ -114,6 +88,16 @@ export default function UnifiedContactForm({
       onSubmit={handleSubmit}
       className="grid grid-cols-1 gap-5 rounded-[1.75rem] border border-ink-100 bg-white p-6 shadow-sm sm:grid-cols-2 sm:p-9"
     >
+      {status === "error" && (
+        <div className="flex items-start gap-2.5 rounded-xl border border-amber-200 bg-amber-50 p-4 text-right sm:col-span-2">
+          <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-amber-600" />
+          <p className="text-sm leading-7 text-amber-800">
+            ما قدرنا نرسل طلبك بسبب مشكلة اتصال. جرّب مرة ثانية، أو تواصل
+            معي مباشرة عبر واتساب أو البريد الإلكتروني بالأسفل.
+          </p>
+        </div>
+      )}
+
       <Field label="الاسم" htmlFor="name">
         <input
           id="name"
@@ -204,9 +188,10 @@ export default function UnifiedContactForm({
       <div className="sm:col-span-2">
         <button
           type="submit"
-          className="w-full rounded-full bg-ink-950 px-6 py-3.5 text-base font-bold text-white transition-colors hover:bg-brand-800 sm:w-auto"
+          disabled={status === "sending"}
+          className="w-full rounded-full bg-ink-950 px-6 py-3.5 text-base font-bold text-white transition-colors hover:bg-brand-800 disabled:opacity-60 sm:w-auto"
         >
-          أرسل الطلب
+          {status === "sending" ? "جارٍ الإرسال..." : "أرسل الطلب"}
         </button>
       </div>
     </form>
