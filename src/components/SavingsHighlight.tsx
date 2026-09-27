@@ -24,7 +24,7 @@ export default function SavingsHighlight() {
         </p>
         <p className="text-xs text-ink-500">{savingsHighlight.note}</p>
         <Link
-          href="/packages"
+          href="/pricing"
           className="mt-2 inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-bold text-ink-950 transition-colors hover:bg-brand-50"
         >
           استعرض الباقات

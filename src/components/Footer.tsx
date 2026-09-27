@@ -6,9 +6,11 @@ import MizaroMark from "@/components/MizaroMark";
 
 const links = [
   { href: "/", label: "الرئيسية" },
-  { href: "/accounting", label: "المحاسبة والضريبة" },
-  { href: "/packages", label: "الباقات" },
+  { href: "/services", label: "الخدمات" },
+  { href: "/pricing", label: "الباقات" },
   { href: "/about", label: "من أنا" },
+  { href: "/blog", label: "المدونة" },
+  { href: "/faq", label: "الأسئلة الشائعة" },
   { href: "/contact", label: "تواصل معي" },
 ];
 

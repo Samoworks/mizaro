@@ -1,5 +1,5 @@
 import type { StructureResolver } from "sanity/structure";
-import { Settings, Receipt, HelpCircle } from "lucide-react";
+import { Settings, Receipt, HelpCircle, Newspaper } from "lucide-react";
 
 /**
  * تخصيص شريط التنقل في الاستوديو: "إعدادات الموقع" وثيقة واحدة فقط
@@ -23,4 +23,6 @@ export const structure: StructureResolver = (S) =>
         .title("باقات المحاسبة والضريبة")
         .icon(Receipt),
       S.documentTypeListItem("faq").title("الأسئلة الشائعة").icon(HelpCircle),
+      S.divider(),
+      S.documentTypeListItem("post").title("مقالات المدونة").icon(Newspaper),
     ]);

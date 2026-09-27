@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
+import NavLink from "@/components/NavLink";
 
 type NavLink = { href: string; label: string };
 
@@ -25,21 +26,23 @@ export default function MobileNav({ navLinks }: { navLinks: NavLink[] }) {
         <nav className="absolute inset-x-0 top-full z-40 border-t border-ink-900/5 bg-white px-4 pb-5 pt-2 shadow-lg md:hidden">
           <div className="flex flex-col gap-1">
             {navLinks.map((link) => (
-              <Link
+              <NavLink
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-2.5 text-sm font-medium text-ink-700 hover:bg-brand-50"
+                className="rounded-lg px-3 py-2.5 text-sm font-medium"
+                activeClassName="bg-brand-50 text-brand-800"
+                inactiveClassName="text-ink-700 hover:bg-brand-50"
               >
                 {link.label}
-              </Link>
+              </NavLink>
             ))}
             <Link
-              href="/contact"
+              href="/assessment"
               onClick={() => setOpen(false)}
               className="mt-2 rounded-full bg-ink-950 px-3 py-3 text-center text-sm font-bold text-white"
             >
-              ابدأ الآن
+              احصل على تقييم مجاني
             </Link>
           </div>
         </nav>

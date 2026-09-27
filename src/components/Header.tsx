@@ -3,12 +3,15 @@ import Link from "next/link";
 import { getSiteSettings } from "@/lib/sanity-data";
 import MizaroMark from "@/components/MizaroMark";
 import MobileNav from "@/components/MobileNav";
+import NavLink from "@/components/NavLink";
 
 const navLinks = [
   { href: "/", label: "الرئيسية" },
-  { href: "/accounting", label: "المحاسبة والضريبة" },
-  { href: "/packages", label: "الباقات" },
+  { href: "/services", label: "الخدمات" },
+  { href: "/pricing", label: "الباقات" },
   { href: "/about", label: "من أنا" },
+  { href: "/blog", label: "المدونة" },
+  { href: "/faq", label: "الأسئلة الشائعة" },
   { href: "/contact", label: "تواصل معي" },
 ];
 
@@ -40,24 +43,24 @@ export default async function Header() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-7 md:flex">
           {navLinks.map((link) => (
-            <Link
+            <NavLink
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-ink-600 transition-colors hover:text-brand-800"
+              className="text-sm font-medium transition-colors"
             >
               {link.label}
-            </Link>
+            </NavLink>
           ))}
         </nav>
 
         <div className="hidden md:block">
           <Link
-            href="/contact"
+            href="/assessment"
             className="rounded-full bg-ink-950 px-6 py-2.5 text-sm font-bold text-white shadow-sm transition-colors hover:bg-brand-800"
           >
-            ابدأ الآن
+            احصل على تقييم مجاني
           </Link>
         </div>
 

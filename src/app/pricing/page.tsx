@@ -8,9 +8,10 @@ import FinalCta from "@/components/FinalCta";
 export const metadata: Metadata = {
   title: "الباقات",
   description: "باقات مِزارو للمحاسبة والضريبة — أسعار واضحة، بدون رسوم مفاجئة.",
+  alternates: { canonical: "/pricing" },
 };
 
-export default function PackagesPage() {
+export default function PricingPage() {
   return (
     <>
       <Header />
@@ -20,7 +21,7 @@ export default function PackagesPage() {
             الباقات
           </span>
           <h1 className="mt-3 text-3xl font-extrabold text-ink-950 sm:text-4xl">
-            باقة واضحة، بسعر أوفر من محاسب دائم
+            اختر مستوى الخدمة المناسب لمنشأتك
           </h1>
           <p className="mt-4 text-ink-500 leading-8">
             كل باقة واضحة السعر والمزايا، وتقدر تبدأ أو تلغي شهريًا.

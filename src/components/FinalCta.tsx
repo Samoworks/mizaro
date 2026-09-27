@@ -21,10 +21,10 @@ export default async function FinalCta() {
 
         <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <Link
-            href="/contact"
+            href="/assessment"
             className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-bold text-ink-950 transition-colors hover:bg-brand-50 sm:w-auto"
           >
-            ابدأ مع مِزارو
+            احصل على تقييم مجاني
             <ArrowLeft className="h-4 w-4" />
           </Link>
           <a

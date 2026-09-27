@@ -63,7 +63,7 @@ export default async function Hero() {
             style={{ animationDelay: "360ms" }}
           >
             <Link
-              href="/contact"
+              href="/assessment"
               className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-bold text-ink-950 transition-colors hover:bg-brand-50 sm:w-auto"
             >
               احصل على تقييم مجاني

@@ -29,6 +29,29 @@ export type PricingPlan = {
 
 export type Faq = { question: string; answer: string };
 
+export type PostSummary = {
+  title: string;
+  slug: string;
+  excerpt: string;
+  publishedAt: string;
+  coverImageUrl: string | null;
+};
+
+export type PostDetail = PostSummary & {
+  body: unknown[];
+  seoDescription?: string | null;
+};
+
+type PostDoc = {
+  title: string;
+  slug: { current: string };
+  excerpt: string;
+  publishedAt: string;
+  coverImage?: SanityImageSource;
+  body?: unknown[];
+  seoDescription?: string;
+};
+
 type SiteSettingsDoc = {
   companyName?: string;
   companyNameEn?: string;
@@ -46,10 +69,14 @@ type SiteSettingsDoc = {
   primaryColor?: { hex?: string };
 };
 
-async function safeFetch<T>(query: string, fallback: T): Promise<T> {
+async function safeFetch<T>(
+  query: string,
+  fallback: T,
+  params: Record<string, unknown> = {}
+): Promise<T> {
   if (!sanityClient) return fallback;
   try {
-    const result = await sanityClient.fetch<T>(query, {}, {
+    const result = await sanityClient.fetch<T>(query, params, {
       next: { revalidate: 60 },
     });
     return result ?? fallback;
@@ -154,4 +181,59 @@ export async function getFaqs(): Promise<Faq[]> {
     []
   );
   return docs.length ? docs : defaultFaqs.map((f) => ({ ...f }));
+}
+
+/**
+ * مقالات المدونة — لا يوجد محتوى افتراضي مُختلق هنا عمدًا؛ إذا لم تُنشر
+ * أي مقالة بعد من لوحة التحكم، تُعرض قائمة فارغة والصفحة توضح ذلك للزائر.
+ */
+export async function getBlogPosts(): Promise<PostSummary[]> {
+  const docs = await safeFetch<PostDoc[]>(
+    `*[_type == "post" && defined(slug.current) && publishedAt <= now()] | order(publishedAt desc){
+      title, slug, excerpt, publishedAt, coverImage
+    }`,
+    []
+  );
+
+  return docs.map((doc) => ({
+    title: doc.title,
+    slug: doc.slug.current,
+    excerpt: doc.excerpt,
+    publishedAt: doc.publishedAt,
+    coverImageUrl: doc.coverImage
+      ? urlForImage(doc.coverImage)?.width(1200).height(675).fit("crop").url() ?? null
+      : null,
+  }));
+}
+
+export async function getBlogPost(slug: string): Promise<PostDetail | null> {
+  const doc = await safeFetch<PostDoc | null>(
+    `*[_type == "post" && slug.current == $slug && publishedAt <= now()][0]{
+      title, slug, excerpt, publishedAt, coverImage, body, seoDescription
+    }`,
+    null,
+    { slug }
+  );
+
+  if (!doc) return null;
+
+  return {
+    title: doc.title,
+    slug: doc.slug.current,
+    excerpt: doc.excerpt,
+    publishedAt: doc.publishedAt,
+    coverImageUrl: doc.coverImage
+      ? urlForImage(doc.coverImage)?.width(1600).height(900).fit("crop").url() ?? null
+      : null,
+    body: doc.body ?? [],
+    seoDescription: doc.seoDescription,
+  };
+}
+
+export async function getAllBlogSlugs(): Promise<string[]> {
+  const slugs = await safeFetch<string[]>(
+    `*[_type == "post" && defined(slug.current) && publishedAt <= now()].slug.current`,
+    []
+  );
+  return slugs;
 }
