@@ -14,11 +14,13 @@ export const structure: StructureResolver = (S) =>
     .title("محتوى مِزارو")
     .items([
       S.listItem()
+        .id("overview")
         .title("نظرة عامة")
         .icon(LayoutDashboard)
-        .child(S.component(DashboardOverview).title("نظرة عامة")),
+        .child(S.component(DashboardOverview).id("overview-pane").title("نظرة عامة")),
       S.divider(),
       S.listItem()
+        .id("siteSettings")
         .title("إعدادات الموقع العامة")
         .icon(Settings)
         .child(
@@ -34,9 +36,10 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem("faq").title("الأسئلة الشائعة").icon(HelpCircle),
       S.divider(),
       S.listItem()
+        .id("blogPosts")
         .title("مقالات المدونة")
         .icon(Newspaper)
-        .child(S.component(PostsGrid).title("مقالات المدونة")),
+        .child(S.component(PostsGrid).id("blogPosts-pane").title("مقالات المدونة")),
     ]);
 
 /**
