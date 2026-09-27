@@ -3,10 +3,12 @@
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import { colorInput } from "@sanity/color-input";
+import { media } from "sanity-plugin-media";
 
 import { dataset, projectId } from "./src/sanity/env";
 import { schema } from "./src/sanity/schemaTypes";
-import { structure } from "./src/sanity/structure";
+import { structure, defaultDocumentNode } from "./src/sanity/structure";
+import { mizaroStudioTheme } from "./src/sanity/studio/theme";
 
 export default defineConfig({
   basePath: "/studio",
@@ -14,5 +16,6 @@ export default defineConfig({
   projectId,
   dataset,
   schema,
-  plugins: [structureTool({ structure }), colorInput()],
+  theme: mizaroStudioTheme,
+  plugins: [structureTool({ structure, defaultDocumentNode }), colorInput(), media()],
 });
