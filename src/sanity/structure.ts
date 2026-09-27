@@ -49,8 +49,8 @@ export const structure: StructureResolver = (S) =>
 export const defaultDocumentNode: DefaultDocumentNodeResolver = (S, { schemaType }) => {
   if (schemaType === "post") {
     return S.document().views([
-      S.view.form().title("المحتوى"),
-      S.view.component(PostPreviewPane).title("معاينة"),
+      S.view.form().id("form").title("المحتوى"),
+      S.view.component(PostPreviewPane).id("preview").title("معاينة"),
     ]);
   }
   return S.document();
