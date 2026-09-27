@@ -55,6 +55,17 @@ export const siteConfig = {
     "أتولى الجانب المحاسبي من مشروعك، وأعطيك صورة واضحة عن أموالك.",
 } as const;
 
+/**
+ * صف شارات صغيرة أسفل أزرار الهيرو — حقائق حقيقية عن طريقة العمل،
+ * بدون أي أرقام أو نسب أو ادعاءات غير موثقة.
+ */
+export const heroTrustPoints = [
+  "بدون عقود طويلة",
+  "تواصل مباشر عبر واتساب",
+  "باقات شهرية واضحة",
+  "خدمة عن بُعد بالكامل",
+] as const;
+
 /** بناء رابط واتساب مع رسالة جاهزة */
 export function buildWhatsAppLink(message?: string) {
   const text = encodeURIComponent(message ?? siteConfig.whatsappDefaultMessage);

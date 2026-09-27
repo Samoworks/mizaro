@@ -1,7 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, MessageCircle } from "lucide-react";
+import { ArrowLeft, MessageCircle, FileClock, Handshake, Wallet, Wifi } from "lucide-react";
 import { buildWhatsAppLinkAsync, getSiteSettings } from "@/lib/sanity-data";
+import { heroTrustPoints } from "@/lib/site-config";
+
+const trustIcons = [FileClock, Handshake, Wallet, Wifi];
 
 export default async function Hero() {
   const [whatsappLink, settings] = await Promise.all([
@@ -11,36 +14,54 @@ export default async function Hero() {
 
   return (
     <section className="relative overflow-hidden bg-ink-950">
-      {/* شبكة نقاط خفيفة + توهّج زمردي — عنصر بصري مجرّد بدل الصور التقليدية */}
+      {/* خلفية متدرجة متحركة بألوان البراند، بدل الخلفية الثابتة */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.07]"
+        className="animate-hero-drift pointer-events-none absolute -inset-x-20 -inset-y-32 opacity-70"
+        style={{
+          background:
+            "radial-gradient(48rem 32rem at 20% 15%, color-mix(in srgb, var(--brand-700) 55%, transparent), transparent 60%), radial-gradient(40rem 30rem at 85% 75%, color-mix(in srgb, var(--brand-500) 40%, transparent), transparent 60%)",
+          filter: "blur(60px)",
+        }}
+      />
+      {/* شبكة نقاط خفيفة فوق الخلفية المتحركة */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.06]"
         style={{
           backgroundImage:
             "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
           backgroundSize: "30px 30px",
         }}
       />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-40 left-1/2 h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-brand-600/20 blur-[120px]"
-      />
 
       <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 px-4 py-20 sm:px-6 sm:py-28 lg:grid-cols-[1.1fr_0.9fr] lg:py-32">
         <div className="text-center lg:text-right">
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-bold tracking-wide text-brand-200 sm:text-sm">
+          <span
+            className="animate-fade-in-up inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-bold tracking-wide text-brand-200 sm:text-sm"
+            style={{ animationDelay: "0ms" }}
+          >
             {settings.heroBadge}
           </span>
 
-          <h1 className="mt-6 text-4xl font-extrabold leading-tight text-white sm:text-5xl md:text-6xl">
+          <h1
+            className="animate-fade-in-up mt-6 text-4xl font-extrabold leading-tight text-white sm:text-5xl md:text-6xl"
+            style={{ animationDelay: "120ms" }}
+          >
             {settings.heroTitle}
           </h1>
 
-          <p className="mx-auto mt-6 max-w-xl text-base leading-8 text-ink-300 sm:text-lg lg:mx-0">
+          <p
+            className="animate-fade-in-up mx-auto mt-6 max-w-xl text-base leading-8 text-ink-300 sm:text-lg lg:mx-0"
+            style={{ animationDelay: "240ms" }}
+          >
             {settings.heroSubtitle}
           </p>
 
-          <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start">
+          <div
+            className="animate-fade-in-up mt-9 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start"
+            style={{ animationDelay: "360ms" }}
+          >
             <Link
               href="/contact"
               className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-bold text-ink-950 transition-colors hover:bg-brand-50 sm:w-auto"
@@ -61,10 +82,29 @@ export default async function Hero() {
 
           <Link
             href="/#quiz"
-            className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-ink-400 transition-colors hover:text-white"
+            className="animate-fade-in-up mt-5 inline-flex items-center gap-2 text-sm font-medium text-ink-400 transition-colors hover:text-white"
+            style={{ animationDelay: "440ms" }}
           >
             أو اعرف الباقة المناسبة لك أولًا
           </Link>
+
+          <ul
+            className="animate-fade-in-up mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 lg:justify-start"
+            style={{ animationDelay: "520ms" }}
+          >
+            {heroTrustPoints.map((point, i) => {
+              const Icon = trustIcons[i % trustIcons.length];
+              return (
+                <li
+                  key={point}
+                  className="flex items-center gap-1.5 text-xs font-medium text-ink-300 sm:text-sm"
+                >
+                  <Icon className="h-4 w-4 text-brand-300" strokeWidth={1.75} />
+                  {point}
+                </li>
+              );
+            })}
+          </ul>
         </div>
 
         {settings.heroImageUrl ? (
